@@ -51,6 +51,13 @@ using System.Runtime.CompilerServices;
 public class Target :
     INotifyPropertyChanged
 {
+    void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
     string? property;
 
     public string? Property
@@ -61,13 +68,6 @@ public class Target :
             property = value;
             OnPropertyChanged();
         }
-    }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
 ```
@@ -115,7 +115,6 @@ Result:
 		01 00 00 00 00
 	)
 	// Fields
-	.field private string 'property'
 	.field private class [System.ObjectModel]System.ComponentModel.PropertyChangedEventHandler PropertyChanged
 	.custom instance void [System.Runtime]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = (
 		01 00 00 00
@@ -123,22 +122,33 @@ Result:
 	.custom instance void [System.Diagnostics.Debug]System.Diagnostics.DebuggerBrowsableAttribute::.ctor(valuetype [System.Diagnostics.Debug]System.Diagnostics.DebuggerBrowsableState) = (
 		01 00 00 00 00 00 00 00
 	)
+	.field private string 'property'
 
 	// Methods
-	.method public hidebysig specialname 
-		instance string get_Property () cil managed 
+	.method private hidebysig 
+		instance void OnPropertyChanged (
+			[opt] string propertyName
+		) cil managed 
 	{
+		.param [1] = nullref
+			.custom instance void [System.Runtime]System.Runtime.CompilerServices.CallerMemberNameAttribute::.ctor() = (
+				01 00 00 00
+			)
 		// Method begins at RVA 0x209b
-		// Code size 7 (0x7)
+		// Code size 27 (0x1b)
 		.maxstack 8
 
-		IL_0000: ldarg.0
-		IL_0001: ldfld string Target::'property'
-		IL_0006: ret
-	} // end of method Target::get_Property
+		IL_0000: nop
+		IL_0001: ldarg.0
+		IL_0002: ldfld class [System.ObjectModel]System.ComponentModel.PropertyChangedEventHandler Target::PropertyChanged
+		IL_0007: dup
+		IL_0008: brtrue.s IL_000d
+
+		IL_000a: pop
+		IL_000b: br.s IL_001a
 ...
 ```
-<sup><a href='/src/Tests/Tests.TypeDefinitionUsage.verified.txt#L1-L36' title='File snippet `Tests.TypeDefinitionUsage.verified.txt` was extracted from'>snippet source</a> | <a href='#snippet-Tests.TypeDefinitionUsage.verified.txt' title='Navigate to start of snippet `Tests.TypeDefinitionUsage.verified.txt`'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.TypeDefinitionUsage.verified.txt#L1-L46' title='File snippet `Tests.TypeDefinitionUsage.verified.txt` was extracted from'>snippet source</a> | <a href='#snippet-Tests.TypeDefinitionUsage.verified.txt' title='Navigate to start of snippet `Tests.TypeDefinitionUsage.verified.txt`'>anchor</a></sup>
 <!-- endsnippet -->
 
 A string for the type name can also be used:
@@ -190,7 +200,7 @@ Result:
 		.custom instance void [System.Runtime]System.Runtime.CompilerServices.CallerMemberNameAttribute::.ctor() = (
 			01 00 00 00
 		)
-	// Method begins at RVA 0x2129
+	// Method begins at RVA 0x209b
 	// Code size 27 (0x1b)
 	.maxstack 8
 

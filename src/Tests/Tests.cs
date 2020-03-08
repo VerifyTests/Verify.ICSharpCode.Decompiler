@@ -120,7 +120,7 @@ public class Tests :
             while ((line = sr.ReadLine()) != null)
             {
                 index++;
-                if (index > 35)
+                if (index > 45)
                 {
                     break;
                 }
