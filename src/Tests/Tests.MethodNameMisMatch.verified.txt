@@ -1,0 +1,6 @@
+{
+  Message: 'Could not find `Target.Missing` in `CurrentDirectory\Tests.dll`',
+  Data: {},
+  Source: 'Verify.ICSharpCode.Decompiler'
+}
+...

@@ -1,0 +1,6 @@
+.property instance string Property1()
+{
+	.get instance string Target::get_Property1()
+	.set instance void Target::set_Property1(string)
+}
+...
