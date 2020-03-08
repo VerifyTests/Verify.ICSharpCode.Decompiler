@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
   <PropertyGroup>
+    <NoWarn>CS1591;CS0649;CS8632</NoWarn>
     <Version>0.1.1</Version>
     <PackageTags>Decompiler, ICSharpCode, Verify</PackageTags>
     <Description>Extends Verify (https://github.com/SimonCropp/Verify) to allow verification of assemblies via ICSharpCode.Decompiler (https://github.com/icsharpcode/ILSpy/wiki/Getting-Started-With-ICSharpCode.Decompiler).</Description>
