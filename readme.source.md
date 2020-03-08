@@ -22,7 +22,7 @@ Enable once at assembly load time:
 snippet: Enable
 
 
-### Type
+### Verify Type
 
 snippet: TypeDefinitionUsage
 
@@ -35,7 +35,7 @@ A string for the type name can also be used:
 snippet: TypeNameUsage
 
 
-### Method
+### Verify Method
 
 snippet: MethodNameUsage
 

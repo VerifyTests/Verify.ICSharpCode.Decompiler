@@ -18,8 +18,8 @@ Support is available via a [Tidelift Subscription](https://tidelift.com/subscrip
 ## Contents
 
   * [Usage](#usage)
-    * [Type](#type)
-    * [Method](#method)
+    * [Verify Type](#verify-type)
+    * [Verify Method](#verify-method)
   * [Security contact information](#security-contact-information)<!-- endtoc -->
 
 
@@ -41,7 +41,7 @@ VerifyICSharpCodeDecompiler.Enable();
 <!-- endsnippet -->
 
 
-### Type
+### Verify Type
 
 <!-- snippet: TypeDefinitionUsage -->
 <a id='snippet-typedefinitionusage'/></a>
@@ -123,7 +123,7 @@ public Task TypeNameUsage()
 <!-- endsnippet -->
 
 
-### Method
+### Verify Method
 
 <!-- snippet: MethodNameUsage -->
 <a id='snippet-methodnameusage'/></a>
