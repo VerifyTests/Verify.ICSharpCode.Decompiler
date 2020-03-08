@@ -12,8 +12,7 @@
 		01 00 00 00 00
 	)
 	// Fields
-	.field private string property1
-	.field private string property2
+	.field private string 'property'
 	.field private class [System.ObjectModel]System.ComponentModel.PropertyChangedEventHandler PropertyChanged
 	.custom instance void [System.Runtime]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = (
 		01 00 00 00
@@ -24,13 +23,14 @@
 
 	// Methods
 	.method public hidebysig specialname 
-		instance string get_Property1 () cil managed 
+		instance string get_Property () cil managed 
 	{
 		// Method begins at RVA 0x209b
 		// Code size 7 (0x7)
 		.maxstack 8
 
 		IL_0000: ldarg.0
-		IL_0001: ldfld string Target::property1
+		IL_0001: ldfld string Target::'property'
 		IL_0006: ret
+	} // end of method Target::get_Property
 ...

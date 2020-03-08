@@ -21,6 +21,10 @@ Enable once at assembly load time:
 
 snippet: Enable
 
+Then given the following type:
+
+snippet: Target.cs
+
 
 ### Verify Type
 

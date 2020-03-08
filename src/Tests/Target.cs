@@ -4,25 +4,14 @@ using System.Runtime.CompilerServices;
 public class Target :
     INotifyPropertyChanged
 {
-    string? property1;
-    string? property2;
+    string? property;
 
-    public string? Property1
+    public string? Property
     {
-        get => property1;
+        get => property;
         set
         {
-            property1 = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string? Property2
-    {
-        get => property2;
-        set
-        {
-            property2 = value;
+            property = value;
             OnPropertyChanged();
         }
     }
