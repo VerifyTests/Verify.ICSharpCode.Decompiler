@@ -63,7 +63,7 @@ public class Tests :
             new PropertyToDisassemble(
                 file,
                 "Target",
-                "Property1"));
+                "Property"));
     }
     #endregion
 
