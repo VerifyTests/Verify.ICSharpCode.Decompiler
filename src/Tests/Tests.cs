@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Metadata;
@@ -111,10 +110,10 @@ public class Tests :
 
     static Tests()
     {
-        SharedVerifySettings.AddScrubber(x =>
+        SharedVerifySettings.AddScrubber(builder =>
         {
-            var builder = new StringBuilder();
-            using var sr = new StringReader(x);
+            using var sr = new StringReader(builder.ToString());
+            builder.Clear();
             string? line;
             var index = 0;
             while ((line = sr.ReadLine()) != null)
@@ -128,7 +127,6 @@ public class Tests :
                 builder.AppendLine(line);
             }
             builder.AppendLine("...");
-            return builder.ToString();
         });
     }
 }
