@@ -93,7 +93,7 @@ public Task TypeDefinitionUsage()
     return Verify(new TypeToDisassemble(file, type));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L20-L33' title='File snippet `typedefinitionusage` was extracted from'>snippet source</a> | <a href='#snippet-typedefinitionusage' title='Navigate to start of snippet `typedefinitionusage`'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L19-L32' title='File snippet `typedefinitionusage` was extracted from'>snippet source</a> | <a href='#snippet-typedefinitionusage' title='Navigate to start of snippet `typedefinitionusage`'>anchor</a></sup>
 <!-- endsnippet -->
 
 Result:
@@ -163,7 +163,7 @@ public Task TypeNameUsage()
     return Verify(new TypeToDisassemble(file, "Target"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L35-L42' title='File snippet `typenameusage` was extracted from'>snippet source</a> | <a href='#snippet-typenameusage' title='Navigate to start of snippet `typenameusage`'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L34-L41' title='File snippet `typenameusage` was extracted from'>snippet source</a> | <a href='#snippet-typenameusage' title='Navigate to start of snippet `typenameusage`'>anchor</a></sup>
 <!-- endsnippet -->
 
 
@@ -183,7 +183,7 @@ public Task MethodNameUsage()
             "OnPropertyChanged"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L44-L55' title='File snippet `methodnameusage` was extracted from'>snippet source</a> | <a href='#snippet-methodnameusage' title='Navigate to start of snippet `methodnameusage`'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L43-L54' title='File snippet `methodnameusage` was extracted from'>snippet source</a> | <a href='#snippet-methodnameusage' title='Navigate to start of snippet `methodnameusage`'>anchor</a></sup>
 <!-- endsnippet -->
 
 Result:
