@@ -37,7 +37,7 @@ Enable once at assembly load time:
 ```cs
 VerifyICSharpCodeDecompiler.Enable();
 ```
-<sup><a href='/src/Tests/GlobalSetup.cs#L9-L11' title='File snippet `enable` was extracted from'>snippet source</a> | <a href='#snippet-enable' title='Navigate to start of snippet `enable`'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L106-L108' title='File snippet `enable` was extracted from'>snippet source</a> | <a href='#snippet-enable' title='Navigate to start of snippet `enable`'>anchor</a></sup>
 <!-- endsnippet -->
 
 Then given the following type:

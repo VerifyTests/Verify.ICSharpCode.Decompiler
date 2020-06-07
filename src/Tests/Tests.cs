@@ -13,7 +13,7 @@ using NUnit.Framework;
 [TestFixture]
 public class Tests
 {
-    string assemblyPath;
+    static string assemblyPath;
 
     #region TypeDefinitionUsage
     [Test]
@@ -68,7 +68,7 @@ public class Tests
     [Test]
     public async Task MethodNameMisMatch()
     {
-        var exception = await Assert.ThrowsAsync<Exception>(
+        var exception = Assert.ThrowsAsync<Exception>(
             () =>
             {
                 using var file = new PEFile(assemblyPath);
@@ -80,7 +80,7 @@ public class Tests
     [Test]
     public async Task PropertyNameMisMatch()
     {
-        var exception = await Assert.ThrowsAsync<Exception>(
+        var exception = Assert.ThrowsAsync<Exception>(
             () =>
             {
                 using var file = new PEFile(assemblyPath);
@@ -92,7 +92,7 @@ public class Tests
     [Test]
     public async Task TypeNameMisMatch()
     {
-        var exception = await Assert.ThrowsAsync<Exception>(
+        var exception = Assert.ThrowsAsync<Exception>(
             () =>
             {
                 using var file = new PEFile(assemblyPath);
@@ -101,13 +101,13 @@ public class Tests
         await Verifier.Verify(exception);
     }
 
-    public Tests()
-    {
-        assemblyPath = Assembly.GetExecutingAssembly().Location;
-    }
-
     static Tests()
     {
+        #region Enable
+        VerifyICSharpCodeDecompiler.Enable();
+        #endregion
+        assemblyPath = Assembly.GetExecutingAssembly().Location;
+
         SharedVerifySettings.AddScrubber(builder =>
         {
             using var sr = new StringReader(builder.ToString());
