@@ -80,7 +80,7 @@ public class Target :
 <!-- snippet: TypeDefinitionUsage -->
 <a id='snippet-typedefinitionusage'/></a>
 ```cs
-[Fact]
+[Test]
 public Task TypeDefinitionUsage()
 {
     using var file = new PEFile(assemblyPath);
@@ -90,10 +90,10 @@ public Task TypeDefinitionUsage()
             var fullName = x.GetFullTypeName(file.Metadata);
             return fullName.Name == "Target";
         });
-    return Verify(new TypeToDisassemble(file, type));
+    return Verifier.Verify(new TypeToDisassemble(file, type));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L19-L32' title='File snippet `typedefinitionusage` was extracted from'>snippet source</a> | <a href='#snippet-typedefinitionusage' title='Navigate to start of snippet `typedefinitionusage`'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L18-L31' title='File snippet `typedefinitionusage` was extracted from'>snippet source</a> | <a href='#snippet-typedefinitionusage' title='Navigate to start of snippet `typedefinitionusage`'>anchor</a></sup>
 <!-- endsnippet -->
 
 Result:
@@ -156,14 +156,14 @@ A string for the type name can also be used:
 <!-- snippet: TypeNameUsage -->
 <a id='snippet-typenameusage'/></a>
 ```cs
-[Fact]
+[Test]
 public Task TypeNameUsage()
 {
     using var file = new PEFile(assemblyPath);
-    return Verify(new TypeToDisassemble(file, "Target"));
+    return Verifier.Verify(new TypeToDisassemble(file, "Target"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L34-L41' title='File snippet `typenameusage` was extracted from'>snippet source</a> | <a href='#snippet-typenameusage' title='Navigate to start of snippet `typenameusage`'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L33-L40' title='File snippet `typenameusage` was extracted from'>snippet source</a> | <a href='#snippet-typenameusage' title='Navigate to start of snippet `typenameusage`'>anchor</a></sup>
 <!-- endsnippet -->
 
 
@@ -172,18 +172,18 @@ public Task TypeNameUsage()
 <!-- snippet: MethodNameUsage -->
 <a id='snippet-methodnameusage'/></a>
 ```cs
-[Fact]
+[Test]
 public Task MethodNameUsage()
 {
     using var file = new PEFile(assemblyPath);
-    return Verify(
+    return Verifier.Verify(
         new MethodToDisassemble(
             file,
             "Target",
             "OnPropertyChanged"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L43-L54' title='File snippet `methodnameusage` was extracted from'>snippet source</a> | <a href='#snippet-methodnameusage' title='Navigate to start of snippet `methodnameusage`'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L42-L53' title='File snippet `methodnameusage` was extracted from'>snippet source</a> | <a href='#snippet-methodnameusage' title='Navigate to start of snippet `methodnameusage`'>anchor</a></sup>
 <!-- endsnippet -->
 
 Result:
