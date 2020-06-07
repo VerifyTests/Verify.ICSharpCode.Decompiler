@@ -7,17 +7,16 @@ using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Metadata;
 using Verify;
 using Verify.ICSharpCode.Decompiler;
-using VerifyXunit;
-using Xunit;
-using Xunit.Abstractions;
+using VerifyNUnit;
+using NUnit.Framework;
 
-public class Tests :
-    VerifyBase
+[TestFixture]
+public class Tests
 {
     string assemblyPath;
 
     #region TypeDefinitionUsage
-    [Fact]
+    [Test]
     public Task TypeDefinitionUsage()
     {
         using var file = new PEFile(assemblyPath);
@@ -27,25 +26,25 @@ public class Tests :
                 var fullName = x.GetFullTypeName(file.Metadata);
                 return fullName.Name == "Target";
             });
-        return Verify(new TypeToDisassemble(file, type));
+        return Verifier.Verify(new TypeToDisassemble(file, type));
     }
     #endregion
 
     #region TypeNameUsage
-    [Fact]
+    [Test]
     public Task TypeNameUsage()
     {
         using var file = new PEFile(assemblyPath);
-        return Verify(new TypeToDisassemble(file, "Target"));
+        return Verifier.Verify(new TypeToDisassemble(file, "Target"));
     }
     #endregion
 
     #region MethodNameUsage
-    [Fact]
+    [Test]
     public Task MethodNameUsage()
     {
         using var file = new PEFile(assemblyPath);
-        return Verify(
+        return Verifier.Verify(
             new MethodToDisassemble(
                 file,
                 "Target",
@@ -54,11 +53,11 @@ public class Tests :
     #endregion
 
     #region PropertyNameUsage
-    [Fact]
+    [Test]
     public Task PropertyNameUsage()
     {
         using var file = new PEFile(assemblyPath);
-        return Verify(
+        return Verifier.Verify(
             new PropertyToDisassemble(
                 file,
                 "Target",
@@ -66,44 +65,43 @@ public class Tests :
     }
     #endregion
 
-    [Fact]
+    [Test]
     public async Task MethodNameMisMatch()
     {
         var exception = await Assert.ThrowsAsync<Exception>(
             () =>
             {
                 using var file = new PEFile(assemblyPath);
-                return Verify(new MethodToDisassemble(file, "Target", "Missing"));
+                return Verifier.Verify(new MethodToDisassemble(file, "Target", "Missing"));
             });
-        await Verify(exception);
+        await Verifier.Verify(exception);
     }
 
-    [Fact]
+    [Test]
     public async Task PropertyNameMisMatch()
     {
         var exception = await Assert.ThrowsAsync<Exception>(
             () =>
             {
                 using var file = new PEFile(assemblyPath);
-                return Verify(new PropertyToDisassemble(file, "Target", "Missing"));
+                return Verifier.Verify(new PropertyToDisassemble(file, "Target", "Missing"));
             });
-        await Verify(exception);
+        await Verifier.Verify(exception);
     }
 
-    [Fact]
+    [Test]
     public async Task TypeNameMisMatch()
     {
         var exception = await Assert.ThrowsAsync<Exception>(
             () =>
             {
                 using var file = new PEFile(assemblyPath);
-                return Verify(new TypeToDisassemble(file, "Missing"));
+                return Verifier.Verify(new TypeToDisassemble(file, "Missing"));
             });
-        await Verify(exception);
+        await Verifier.Verify(exception);
     }
 
-    public Tests(ITestOutputHelper output) :
-        base(output)
+    public Tests()
     {
         assemblyPath = Assembly.GetExecutingAssembly().Location;
     }
