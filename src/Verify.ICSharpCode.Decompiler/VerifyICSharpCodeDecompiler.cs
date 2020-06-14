@@ -2,17 +2,17 @@
 using System.Text;
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Disassembler;
-using Verify.ICSharpCode.Decompiler;
+using VerifyTests.ICSharpCode.Decompiler;
 
-namespace Verify
+namespace VerifyTests
 {
     public static class VerifyICSharpCodeDecompiler
     {
         public static void Enable()
         {
-            SharedVerifySettings.RegisterFileConverter<TypeToDisassemble>("txt", ConvertTypeDefinitionHandle);
-            SharedVerifySettings.RegisterFileConverter<MethodToDisassemble>("txt", ConvertMethodDefinitionHandle);
-            SharedVerifySettings.RegisterFileConverter<PropertyToDisassemble>("txt", ConvertPropertyDefinitionHandle);
+            VerifierSettings.RegisterFileConverter<TypeToDisassemble>("txt", ConvertTypeDefinitionHandle);
+            VerifierSettings.RegisterFileConverter<MethodToDisassemble>("txt", ConvertMethodDefinitionHandle);
+            VerifierSettings.RegisterFileConverter<PropertyToDisassemble>("txt", ConvertPropertyDefinitionHandle);
         }
 
         static ConversionResult ConvertTypeDefinitionHandle(TypeToDisassemble type, VerifySettings _)

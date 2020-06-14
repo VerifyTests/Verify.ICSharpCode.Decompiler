@@ -4,7 +4,7 @@ using System.Reflection.Metadata;
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Metadata;
 
-namespace Verify.ICSharpCode.Decompiler
+namespace VerifyTests.ICSharpCode.Decompiler
 {
     public static class Extensions
     {

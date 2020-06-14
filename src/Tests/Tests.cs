@@ -5,10 +5,10 @@ using System.Reflection;
 using System.Threading.Tasks;
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Metadata;
-using Verify;
-using Verify.ICSharpCode.Decompiler;
+using VerifyTests;
 using VerifyNUnit;
 using NUnit.Framework;
+using VerifyTests.ICSharpCode.Decompiler;
 
 [TestFixture]
 public class Tests
@@ -108,7 +108,7 @@ public class Tests
         #endregion
         assemblyPath = Assembly.GetExecutingAssembly().Location;
 
-        SharedVerifySettings.AddScrubber(builder =>
+        VerifierSettings.AddScrubber(builder =>
         {
             using var sr = new StringReader(builder.ToString());
             builder.Clear();

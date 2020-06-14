@@ -1,8 +1,8 @@
 ﻿using System.Reflection.Metadata;
 using ICSharpCode.Decompiler.Metadata;
-using Verify.ICSharpCode.Decompiler;
+using VerifyTests.ICSharpCode.Decompiler;
 
-namespace Verify
+namespace VerifyTests
 {
     public class PropertyToDisassemble
     {
