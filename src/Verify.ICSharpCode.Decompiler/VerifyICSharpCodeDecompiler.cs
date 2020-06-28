@@ -10,9 +10,9 @@ namespace VerifyTests
     {
         public static void Enable()
         {
-            VerifierSettings.RegisterFileConverter<TypeToDisassemble>("txt", ConvertTypeDefinitionHandle);
-            VerifierSettings.RegisterFileConverter<MethodToDisassemble>("txt", ConvertMethodDefinitionHandle);
-            VerifierSettings.RegisterFileConverter<PropertyToDisassemble>("txt", ConvertPropertyDefinitionHandle);
+            VerifierSettings.RegisterFileConverter<TypeToDisassemble>(ConvertTypeDefinitionHandle);
+            VerifierSettings.RegisterFileConverter<MethodToDisassemble>(ConvertMethodDefinitionHandle);
+            VerifierSettings.RegisterFileConverter<PropertyToDisassemble>(ConvertPropertyDefinitionHandle);
         }
 
         static ConversionResult ConvertTypeDefinitionHandle(TypeToDisassemble type, VerifySettings _)
@@ -41,7 +41,11 @@ namespace VerifyTests
 
         static ConversionResult ConversionResult(PlainTextOutput output)
         {
-            return new ConversionResult(null, new Stream[] {StringToMemoryStream(output.ToString())});
+            return new ConversionResult(null,
+                new[]
+                {
+                    new ConversionStream("txt", StringToMemoryStream(output.ToString()))
+                });
         }
 
         static MemoryStream StringToMemoryStream(string text)
