@@ -12,7 +12,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 Extends [Verify](https://github.com/VerifyTests/Verify) to allow verification of assemblies via [ICSharpCode.Decompiler](https://github.com/icsharpcode/ILSpy/wiki/Getting-Started-With-ICSharpCode.Decompiler).
 
-Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-verify.icsharpcode.decompiler?utm_source=nuget-verify.icsharpcode.decompiler&utm_medium=referral&utm_campaign=enterprise).
+Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-verify?utm_source=nuget-verify&utm_medium=referral&utm_campaign=enterprise).
 
 <!-- toc -->
 ## Contents
