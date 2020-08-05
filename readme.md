@@ -36,7 +36,7 @@ https://nuget.org/packages/Verify.ICSharpCode.Decompiler/
 Enable once at assembly load time:
 
 <!-- snippet: Enable -->
-<a id='snippet-enable'/></a>
+<a id='snippet-enable'></a>
 ```cs
 VerifyICSharpCodeDecompiler.Enable();
 ```
@@ -46,7 +46,7 @@ VerifyICSharpCodeDecompiler.Enable();
 Then given the following type:
 
 <!-- snippet: Target.cs -->
-<a id='snippet-Target.cs'/></a>
+<a id='snippet-Target.cs'></a>
 ```cs
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -81,7 +81,7 @@ public class Target :
 ### Verify Type
 
 <!-- snippet: TypeDefinitionUsage -->
-<a id='snippet-typedefinitionusage'/></a>
+<a id='snippet-typedefinitionusage'></a>
 ```cs
 [Test]
 public Task TypeDefinitionUsage()
@@ -102,7 +102,7 @@ public Task TypeDefinitionUsage()
 Result:
 
 <!-- snippet: Tests.TypeDefinitionUsage.verified.txt -->
-<a id='snippet-Tests.TypeDefinitionUsage.verified.txt'/></a>
+<a id='snippet-Tests.TypeDefinitionUsage.verified.txt'></a>
 ```txt
 .class public auto ansi beforefieldinit Target
 	extends [System.Runtime]System.Object
@@ -157,7 +157,7 @@ Result:
 A string for the type name can also be used:
 
 <!-- snippet: TypeNameUsage -->
-<a id='snippet-typenameusage'/></a>
+<a id='snippet-typenameusage'></a>
 ```cs
 [Test]
 public Task TypeNameUsage()
@@ -173,7 +173,7 @@ public Task TypeNameUsage()
 ### Verify Method
 
 <!-- snippet: MethodNameUsage -->
-<a id='snippet-methodnameusage'/></a>
+<a id='snippet-methodnameusage'></a>
 ```cs
 [Test]
 public Task MethodNameUsage()
@@ -192,7 +192,7 @@ public Task MethodNameUsage()
 Result:
 
 <!-- snippet: Tests.MethodNameUsage.verified.txt -->
-<a id='snippet-Tests.MethodNameUsage.verified.txt'/></a>
+<a id='snippet-Tests.MethodNameUsage.verified.txt'></a>
 ```txt
 .method private hidebysig 
 	instance void OnPropertyChanged (
