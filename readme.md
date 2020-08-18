@@ -23,7 +23,7 @@ Part of the <a href='https://dotnetfoundation.org' alt=''>.NET Foundation</a>
   * [Usage](#usage)
     * [Verify Type](#verify-type)
     * [Verify Method](#verify-method)
-  * [Security contact information](#security-contact-information)<!-- endtoc -->
+  * [Security contact information](#security-contact-information)<!-- endToc -->
 
 
 ## NuGet package
@@ -41,7 +41,7 @@ Enable once at assembly load time:
 VerifyICSharpCodeDecompiler.Enable();
 ```
 <sup><a href='/src/Tests/Tests.cs#L106-L108' title='File snippet `enable` was extracted from'>snippet source</a> | <a href='#snippet-enable' title='Navigate to start of snippet `enable`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 Then given the following type:
 
@@ -75,7 +75,7 @@ public class Target :
 }
 ```
 <sup><a href='/src/Tests/Target.cs#L1-L25' title='File snippet `Target.cs` was extracted from'>snippet source</a> | <a href='#snippet-Target.cs' title='Navigate to start of snippet `Target.cs`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 
 ### Verify Type
@@ -97,7 +97,7 @@ public Task TypeDefinitionUsage()
 }
 ```
 <sup><a href='/src/Tests/Tests.cs#L18-L31' title='File snippet `typedefinitionusage` was extracted from'>snippet source</a> | <a href='#snippet-typedefinitionusage' title='Navigate to start of snippet `typedefinitionusage`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 Result:
 
@@ -152,7 +152,7 @@ Result:
 ...
 ```
 <sup><a href='/src/Tests/Tests.TypeDefinitionUsage.verified.txt#L1-L46' title='File snippet `Tests.TypeDefinitionUsage.verified.txt` was extracted from'>snippet source</a> | <a href='#snippet-Tests.TypeDefinitionUsage.verified.txt' title='Navigate to start of snippet `Tests.TypeDefinitionUsage.verified.txt`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 A string for the type name can also be used:
 
@@ -167,7 +167,7 @@ public Task TypeNameUsage()
 }
 ```
 <sup><a href='/src/Tests/Tests.cs#L33-L40' title='File snippet `typenameusage` was extracted from'>snippet source</a> | <a href='#snippet-typenameusage' title='Navigate to start of snippet `typenameusage`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 
 ### Verify Method
@@ -187,7 +187,7 @@ public Task MethodNameUsage()
 }
 ```
 <sup><a href='/src/Tests/Tests.cs#L42-L53' title='File snippet `methodnameusage` was extracted from'>snippet source</a> | <a href='#snippet-methodnameusage' title='Navigate to start of snippet `methodnameusage`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 Result:
 
@@ -227,7 +227,7 @@ Result:
 ...
 ```
 <sup><a href='/src/Tests/Tests.MethodNameUsage.verified.txt#L1-L31' title='File snippet `Tests.MethodNameUsage.verified.txt` was extracted from'>snippet source</a> | <a href='#snippet-Tests.MethodNameUsage.verified.txt' title='Navigate to start of snippet `Tests.MethodNameUsage.verified.txt`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 
 ## Security contact information
