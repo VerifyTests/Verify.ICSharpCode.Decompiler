@@ -5,7 +5,7 @@
   <ItemGroup>
     <PackageReference Include="ICSharpCode.Decompiler" Version="6.1.0.5902" />
     <PackageReference Include="System.Reflection.Metadata" Version="1.8.1" />
-    <PackageReference Include="Verify" Version="6.15.3" />
+    <PackageReference Include="Verify" Version="6.20.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" Condition="$(Configuration) == 'Release'" />
     <PackageReference Include="ProjectDefaults" Version="1.0.45" PrivateAssets="All" />
