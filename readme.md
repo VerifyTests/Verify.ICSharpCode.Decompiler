@@ -36,17 +36,17 @@ https://nuget.org/packages/Verify.ICSharpCode.Decompiler/
 Enable once at assembly load time:
 
 <!-- snippet: Enable -->
-<a id='snippet-enable'></a>
+<a id='9905c339'></a>
 ```cs
 VerifyICSharpCodeDecompiler.Enable();
 ```
-<sup><a href='/src/Tests/Tests.cs#L106-L108' title='File snippet `enable` was extracted from'>snippet source</a> | <a href='#snippet-enable' title='Navigate to start of snippet `enable`'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L106-L108' title='Snippet source file'>snippet source</a> | <a href='#9905c339' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Then given the following type:
 
 <!-- snippet: Target.cs -->
-<a id='snippet-Target.cs'></a>
+<a id='7a9ecb07'></a>
 ```cs
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -74,14 +74,14 @@ public class Target :
     }
 }
 ```
-<sup><a href='/src/Tests/Target.cs#L1-L25' title='File snippet `Target.cs` was extracted from'>snippet source</a> | <a href='#snippet-Target.cs' title='Navigate to start of snippet `Target.cs`'>anchor</a></sup>
+<sup><a href='/src/Tests/Target.cs#L1-L25' title='Snippet source file'>snippet source</a> | <a href='#7a9ecb07' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
 ### Verify Type
 
 <!-- snippet: TypeDefinitionUsage -->
-<a id='snippet-typedefinitionusage'></a>
+<a id='f5d76aa5'></a>
 ```cs
 [Test]
 public Task TypeDefinitionUsage()
@@ -96,13 +96,13 @@ public Task TypeDefinitionUsage()
     return Verifier.Verify(new TypeToDisassemble(file, type));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L18-L31' title='File snippet `typedefinitionusage` was extracted from'>snippet source</a> | <a href='#snippet-typedefinitionusage' title='Navigate to start of snippet `typedefinitionusage`'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L18-L31' title='Snippet source file'>snippet source</a> | <a href='#f5d76aa5' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Result:
 
 <!-- snippet: Tests.TypeDefinitionUsage.verified.txt -->
-<a id='snippet-Tests.TypeDefinitionUsage.verified.txt'></a>
+<a id='37e8f3f3'></a>
 ```txt
 .class public auto ansi beforefieldinit Target
 	extends [System.Runtime]System.Object
@@ -151,13 +151,13 @@ Result:
 		IL_000b: br.s IL_001a
 ...
 ```
-<sup><a href='/src/Tests/Tests.TypeDefinitionUsage.verified.txt#L1-L46' title='File snippet `Tests.TypeDefinitionUsage.verified.txt` was extracted from'>snippet source</a> | <a href='#snippet-Tests.TypeDefinitionUsage.verified.txt' title='Navigate to start of snippet `Tests.TypeDefinitionUsage.verified.txt`'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.TypeDefinitionUsage.verified.txt#L1-L46' title='Snippet source file'>snippet source</a> | <a href='#37e8f3f3' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 A string for the type name can also be used:
 
 <!-- snippet: TypeNameUsage -->
-<a id='snippet-typenameusage'></a>
+<a id='c98096ba'></a>
 ```cs
 [Test]
 public Task TypeNameUsage()
@@ -166,14 +166,14 @@ public Task TypeNameUsage()
     return Verifier.Verify(new TypeToDisassemble(file, "Target"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L33-L40' title='File snippet `typenameusage` was extracted from'>snippet source</a> | <a href='#snippet-typenameusage' title='Navigate to start of snippet `typenameusage`'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L33-L40' title='Snippet source file'>snippet source</a> | <a href='#c98096ba' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
 ### Verify Method
 
 <!-- snippet: MethodNameUsage -->
-<a id='snippet-methodnameusage'></a>
+<a id='d3fd00e3'></a>
 ```cs
 [Test]
 public Task MethodNameUsage()
@@ -186,13 +186,13 @@ public Task MethodNameUsage()
             "OnPropertyChanged"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L42-L53' title='File snippet `methodnameusage` was extracted from'>snippet source</a> | <a href='#snippet-methodnameusage' title='Navigate to start of snippet `methodnameusage`'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L42-L53' title='Snippet source file'>snippet source</a> | <a href='#d3fd00e3' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Result:
 
 <!-- snippet: Tests.MethodNameUsage.verified.txt -->
-<a id='snippet-Tests.MethodNameUsage.verified.txt'></a>
+<a id='1e755731'></a>
 ```txt
 .method private hidebysig 
 	instance void OnPropertyChanged (
@@ -226,7 +226,7 @@ Result:
 } // end of method Target::OnPropertyChanged
 ...
 ```
-<sup><a href='/src/Tests/Tests.MethodNameUsage.verified.txt#L1-L31' title='File snippet `Tests.MethodNameUsage.verified.txt` was extracted from'>snippet source</a> | <a href='#snippet-Tests.MethodNameUsage.verified.txt' title='Navigate to start of snippet `Tests.MethodNameUsage.verified.txt`'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.MethodNameUsage.verified.txt#L1-L31' title='Snippet source file'>snippet source</a> | <a href='#1e755731' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
