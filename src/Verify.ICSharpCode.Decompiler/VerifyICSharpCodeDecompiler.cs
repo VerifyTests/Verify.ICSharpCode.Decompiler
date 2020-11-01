@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Disassembler;
@@ -15,7 +16,7 @@ namespace VerifyTests
             VerifierSettings.RegisterFileConverter<PropertyToDisassemble>(ConvertPropertyDefinitionHandle);
         }
 
-        static ConversionResult ConvertTypeDefinitionHandle(TypeToDisassemble type, VerifySettings _)
+        static ConversionResult ConvertTypeDefinitionHandle(TypeToDisassemble type, IReadOnlyDictionary<string, object> _)
         {
             var output = new PlainTextOutput();
             var disassembler = new ReflectionDisassembler(output, default);
@@ -23,7 +24,7 @@ namespace VerifyTests
             return ConversionResult(output);
         }
 
-        static ConversionResult ConvertPropertyDefinitionHandle(PropertyToDisassemble property, VerifySettings _)
+        static ConversionResult ConvertPropertyDefinitionHandle(PropertyToDisassemble property, IReadOnlyDictionary<string, object> _)
         {
             var output = new PlainTextOutput();
             var disassembler = new ReflectionDisassembler(output, default);
@@ -31,7 +32,7 @@ namespace VerifyTests
             return ConversionResult(output);
         }
 
-        static ConversionResult ConvertMethodDefinitionHandle(MethodToDisassemble method, VerifySettings _)
+        static ConversionResult ConvertMethodDefinitionHandle(MethodToDisassemble method, IReadOnlyDictionary<string, object> _)
         {
             var output = new PlainTextOutput();
             var disassembler = new ReflectionDisassembler(output, default);
