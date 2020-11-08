@@ -1,5 +1,5 @@
 {
-  Type: 'Exception',
-  Message: 'Could not find `Target.Missing` in `CurrentDirectory\Tests.dll`'
+  Type: Exception,
+  Message: Could not find `Target.Missing` in `CurrentDirectory\Tests.dll`
 }
 ...
