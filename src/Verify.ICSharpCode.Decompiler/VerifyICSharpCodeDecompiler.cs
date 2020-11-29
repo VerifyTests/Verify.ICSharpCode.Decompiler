@@ -18,31 +18,31 @@ namespace VerifyTests
 
         static ConversionResult ConvertTypeDefinitionHandle(TypeToDisassemble type, IReadOnlyDictionary<string, object> _)
         {
-            var output = new PlainTextOutput();
-            var disassembler = new ReflectionDisassembler(output, default);
+            PlainTextOutput output = new();
+            ReflectionDisassembler disassembler = new(output, default);
             disassembler.DisassembleType(type.file, type.type);
             return ConversionResult(output);
         }
 
         static ConversionResult ConvertPropertyDefinitionHandle(PropertyToDisassemble property, IReadOnlyDictionary<string, object> _)
         {
-            var output = new PlainTextOutput();
-            var disassembler = new ReflectionDisassembler(output, default);
+            PlainTextOutput output = new();
+            ReflectionDisassembler disassembler = new(output, default);
             disassembler.DisassembleProperty(property.file, property.Property);
             return ConversionResult(output);
         }
 
         static ConversionResult ConvertMethodDefinitionHandle(MethodToDisassemble method, IReadOnlyDictionary<string, object> _)
         {
-            var output = new PlainTextOutput();
-            var disassembler = new ReflectionDisassembler(output, default);
+            PlainTextOutput output = new();
+            ReflectionDisassembler disassembler = new(output, default);
             disassembler.DisassembleMethod(method.file, method.method);
             return ConversionResult(output);
         }
 
         static ConversionResult ConversionResult(PlainTextOutput output)
         {
-            return new ConversionResult(null,
+            return new(null,
                 new[]
                 {
                     new ConversionStream("txt", StringToMemoryStream(output.ToString()))
@@ -52,7 +52,7 @@ namespace VerifyTests
         static MemoryStream StringToMemoryStream(string text)
         {
             var bytes = Encoding.UTF8.GetBytes(text.Replace("\r\n", "\n"));
-            return new MemoryStream(bytes);
+            return new(bytes);
         }
     }
 }

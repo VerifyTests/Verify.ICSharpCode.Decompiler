@@ -18,7 +18,7 @@ namespace VerifyTests.ICSharpCode.Decompiler
                 });
             if (type == default)
             {
-                throw new Exception($"Could not find `{typeName}` in `{file.FileName}`");
+                throw new($"Could not find `{typeName}` in `{file.FileName}`");
             }
 
             return type;
@@ -57,7 +57,7 @@ namespace VerifyTests.ICSharpCode.Decompiler
                 }
             }
 
-            throw new Exception($"Could not find `{typeName}.{methodName}` in `{file.FileName}`");
+            throw new($"Could not find `{typeName}.{methodName}` in `{file.FileName}`");
         }
     }
 }

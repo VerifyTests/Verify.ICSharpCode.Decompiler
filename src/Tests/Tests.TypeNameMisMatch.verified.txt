@@ -1,5 +1,11 @@
 {
   Type: Exception,
-  Message: Could not find `Missing` in `CurrentDirectory\Tests.dll`
+  Message: Could not find `Missing` in `CurrentDirectory\Tests.dll`,
+  StackTrace: 
+at VerifyTests.ICSharpCode.Decompiler.Extensions.FindType(PEFile file, String typeName)
+at VerifyTests.ICSharpCode.Decompiler.TypeToDisassemble..ctor(PEFile file, String typeName)
+at Tests.<>c.<TypeNameMisMatch>b__7_0()
+at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(Func`1 invoke)
+at NUnit.Framework.Assert.ThrowsAsync(IResolveConstraint expression, AsyncTestDelegate code, String message, Object[] args)
 }
 ...
