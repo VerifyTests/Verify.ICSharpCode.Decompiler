@@ -42,6 +42,7 @@ namespace VerifyTests.ICSharpCode.Decompiler
 
             throw new Exception($"Could not find `{typeName}.{propertyName}` in `{file.FileName}`");
         }
+
         public static MethodDefinitionHandle FindMethod(this PEFile file, string typeName, string methodName)
         {
             var type = file.FindType(typeName);
