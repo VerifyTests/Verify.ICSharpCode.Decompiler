@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Disassembler;
 using VerifyTests.ICSharpCode.Decompiler;
@@ -42,17 +40,7 @@ namespace VerifyTests
 
         static ConversionResult ConversionResult(PlainTextOutput output)
         {
-            return new(null,
-                new[]
-                {
-                    new ConversionStream("txt", StringToMemoryStream(output.ToString()))
-                });
-        }
-
-        static MemoryStream StringToMemoryStream(string text)
-        {
-            var bytes = Encoding.UTF8.GetBytes(text.Replace("\r\n", "\n"));
-            return new(bytes);
+            return new(null,"txt", output.ToString());
         }
     }
 }
