@@ -5,18 +5,8 @@
 
 Extends [Verify](https://github.com/VerifyTests/Verify) to allow verification of assemblies via [ICSharpCode.Decompiler](https://github.com/icsharpcode/ILSpy/wiki/Getting-Started-With-ICSharpCode.Decompiler).
 
-Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-verify?utm_source=nuget-verify&utm_medium=referral&utm_campaign=enterprise).
-
 <a href='https://dotnetfoundation.org' alt='Part of the .NET Foundation'><img src='https://raw.githubusercontent.com/VerifyTests/Verify/master/docs/dotNetFoundation.svg' height='30px'></a><br>
 Part of the <a href='https://dotnetfoundation.org' alt=''>.NET Foundation</a>
-
-<!-- toc -->
-## Contents
-
-  * [Usage](#usage)
-    * [Verify Type](#verify-type)
-    * [Verify Method](#verify-method)
-  * [Security contact information](#security-contact-information)<!-- endToc -->
 
 
 ## NuGet package
@@ -222,10 +212,6 @@ Result:
 <sup><a href='/src/Tests/Tests.MethodNameUsage.verified.txt#L1-L31' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.MethodNameUsage.verified.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-
-## Security contact information
-
-To report a security vulnerability, use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
 
 
 ## Icon
