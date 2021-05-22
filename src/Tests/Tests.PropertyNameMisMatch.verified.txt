@@ -1,7 +1,7 @@
-{
+﻿{
   Type: Exception,
   Message: Could not find `Target.Missing` in `{CurrentDirectory}\Tests.dll`,
-  StackTrace: 
+  StackTrace:
 at VerifyTests.ICSharpCode.Decompiler.Extensions.FindProperty(PEFile file, String typeName, String propertyName)
 at VerifyTests.PropertyToDisassemble..ctor(PEFile file, String typeName, String propertyName)
 at Tests.<>c.<PropertyNameMisMatch>b__6_0()
