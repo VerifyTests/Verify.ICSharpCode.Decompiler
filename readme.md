@@ -23,7 +23,7 @@ Enable once at assembly load time:
 ```cs
 VerifyICSharpCodeDecompiler.Enable();
 ```
-<sup><a href='/src/Tests/Tests.cs#L106-L108' title='Snippet source file'>snippet source</a> | <a href='#snippet-enable' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L101-L103' title='Snippet source file'>snippet source</a> | <a href='#snippet-enable' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Then given the following type:
@@ -32,14 +32,13 @@ Then given the following type:
 <a id='snippet-Target.cs'></a>
 ```cs
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 public class Target :
     INotifyPropertyChanged
 {
     void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        PropertyChanged?.Invoke(this, new(propertyName));
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -57,7 +56,7 @@ public class Target :
     }
 }
 ```
-<sup><a href='/src/Tests/Target.cs#L1-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-Target.cs' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Target.cs#L1-L24' title='Snippet source file'>snippet source</a> | <a href='#snippet-Target.cs' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -79,7 +78,7 @@ public Task TypeDefinitionUsage()
     return Verifier.Verify(new TypeToDisassemble(file, type));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L18-L31' title='Snippet source file'>snippet source</a> | <a href='#snippet-typedefinitionusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L13-L26' title='Snippet source file'>snippet source</a> | <a href='#snippet-typedefinitionusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Result:
@@ -149,7 +148,7 @@ public Task TypeNameUsage()
     return Verifier.Verify(new TypeToDisassemble(file, "Target"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L33-L40' title='Snippet source file'>snippet source</a> | <a href='#snippet-typenameusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L28-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-typenameusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -169,7 +168,7 @@ public Task MethodNameUsage()
             "OnPropertyChanged"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L42-L53' title='Snippet source file'>snippet source</a> | <a href='#snippet-methodnameusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L37-L48' title='Snippet source file'>snippet source</a> | <a href='#snippet-methodnameusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Result:
