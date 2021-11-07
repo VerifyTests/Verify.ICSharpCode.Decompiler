@@ -1,6 +1,6 @@
 ﻿{
   Type: Exception,
-  Message: Could not find `Missing` in `{CurrentDirectory}\Tests.dll`,
+  Message: Could not find `Missing` in `{CurrentDirectory}Tests.dll`,
   StackTrace:
 at VerifyTests.ICSharpCode.Decompiler.Extensions.FindType(PEFile file, String typeName)
 at VerifyTests.ICSharpCode.Decompiler.TypeToDisassemble..ctor(PEFile file, String typeName)

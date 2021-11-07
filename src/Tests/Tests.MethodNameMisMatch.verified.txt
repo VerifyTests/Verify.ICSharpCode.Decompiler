@@ -1,6 +1,6 @@
 ﻿{
   Type: Exception,
-  Message: Could not find `Target.Missing` in `{CurrentDirectory}\Tests.dll`,
+  Message: Could not find `Target.Missing` in `{CurrentDirectory}Tests.dll`,
   StackTrace:
 at VerifyTests.ICSharpCode.Decompiler.Extensions.FindMethod(PEFile file, String typeName, String methodName)
 at VerifyTests.MethodToDisassemble..ctor(PEFile file, String typeName, String methodName)
