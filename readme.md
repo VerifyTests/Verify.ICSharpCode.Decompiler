@@ -75,7 +75,7 @@ public Task TypeDefinitionUsage()
             var fullName = x.GetFullTypeName(file.Metadata);
             return fullName.Name == "Target";
         });
-    return Verifier.Verify(new TypeToDisassemble(file, type));
+    return Verify(new TypeToDisassemble(file, type));
 }
 ```
 <sup><a href='/src/Tests/Tests.cs#L13-L26' title='Snippet source file'>snippet source</a> | <a href='#snippet-typedefinitionusage' title='Start of snippet'>anchor</a></sup>
@@ -145,7 +145,7 @@ A string for the type name can also be used:
 public Task TypeNameUsage()
 {
     using var file = new PEFile(assemblyPath);
-    return Verifier.Verify(new TypeToDisassemble(file, "Target"));
+    return Verify(new TypeToDisassemble(file, "Target"));
 }
 ```
 <sup><a href='/src/Tests/Tests.cs#L28-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-typenameusage' title='Start of snippet'>anchor</a></sup>
@@ -161,7 +161,7 @@ public Task TypeNameUsage()
 public Task MethodNameUsage()
 {
     using var file = new PEFile(assemblyPath);
-    return Verifier.Verify(
+    return Verify(
         new MethodToDisassemble(
             file,
             "Target",
