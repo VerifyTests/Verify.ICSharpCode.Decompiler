@@ -21,7 +21,7 @@ public class Tests
                 var fullName = x.GetFullTypeName(file.Metadata);
                 return fullName.Name == "Target";
             });
-        return Verifier.Verify(new TypeToDisassemble(file, type));
+        return Verify(new TypeToDisassemble(file, type));
     }
     #endregion
 
@@ -30,7 +30,7 @@ public class Tests
     public Task TypeNameUsage()
     {
         using var file = new PEFile(assemblyPath);
-        return Verifier.Verify(new TypeToDisassemble(file, "Target"));
+        return Verify(new TypeToDisassemble(file, "Target"));
     }
     #endregion
 
@@ -39,7 +39,7 @@ public class Tests
     public Task MethodNameUsage()
     {
         using var file = new PEFile(assemblyPath);
-        return Verifier.Verify(
+        return Verify(
             new MethodToDisassemble(
                 file,
                 "Target",
@@ -52,7 +52,7 @@ public class Tests
     public Task PropertyNameUsage()
     {
         using var file = new PEFile(assemblyPath);
-        return Verifier.Verify(
+        return Verify(
             new PropertyToDisassemble(
                 file,
                 "Target",
@@ -67,9 +67,9 @@ public class Tests
             () =>
             {
                 using var file = new PEFile(assemblyPath);
-                return Verifier.Verify(new MethodToDisassemble(file, "Target", "Missing"));
+                return Verify(new MethodToDisassemble(file, "Target", "Missing"));
             });
-        await Verifier.Verify(exception);
+        await Verify(exception);
     }
 
     [Test]
@@ -79,9 +79,9 @@ public class Tests
             () =>
             {
                 using var file = new PEFile(assemblyPath);
-                return Verifier.Verify(new PropertyToDisassemble(file, "Target", "Missing"));
+                return Verify(new PropertyToDisassemble(file, "Target", "Missing"));
             });
-        await Verifier.Verify(exception);
+        await Verify(exception);
     }
 
     [Test]
@@ -91,9 +91,9 @@ public class Tests
             () =>
             {
                 using var file = new PEFile(assemblyPath);
-                return Verifier.Verify(new TypeToDisassemble(file, "Missing"));
+                return Verify(new TypeToDisassemble(file, "Missing"));
             });
-        await Verifier.Verify(exception);
+        await Verify(exception);
     }
 
     static Tests()
