@@ -1,8 +1,5 @@
 ﻿using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Metadata;
-using VerifyTests;
-using VerifyNUnit;
-using NUnit.Framework;
 using VerifyTests.ICSharpCode.Decompiler;
 
 [TestFixture]
