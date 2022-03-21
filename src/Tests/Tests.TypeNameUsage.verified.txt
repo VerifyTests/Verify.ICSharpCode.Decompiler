@@ -1,4 +1,4 @@
-.class public auto ansi beforefieldinit Target
+﻿.class public auto ansi beforefieldinit Target
 	extends [System.Runtime]System.Object
 	implements .custom instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
 		01 00 00 00 00
@@ -32,15 +32,15 @@
 				01 00 00 00
 			)
 		// Method begins at RVA 0x2092
-		// Code size 27 (0x1b)
+		// Header size: 1
+		// Code size: 26 (0x1a)
 		.maxstack 8
 
-		IL_0000: nop
-		IL_0001: ldarg.0
-		IL_0002: ldfld class [System.ObjectModel]System.ComponentModel.PropertyChangedEventHandler Target::PropertyChanged
-		IL_0007: dup
-		IL_0008: brtrue.s IL_000d
+		IL_0000: ldarg.0
+		IL_0001: ldfld class [System.ObjectModel]System.ComponentModel.PropertyChangedEventHandler Target::PropertyChanged
+		IL_0006: dup
+		IL_0007: brtrue.s IL_000c
 
-		IL_000a: pop
-		IL_000b: br.s IL_001a
+		IL_0009: pop
+		IL_000a: br.s IL_0019
 ...

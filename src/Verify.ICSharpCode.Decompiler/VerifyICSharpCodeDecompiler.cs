@@ -37,8 +37,6 @@ public static class VerifyICSharpCodeDecompiler
         return ConversionResult(output);
     }
 
-    static ConversionResult ConversionResult(PlainTextOutput output)
-    {
-        return new(null,"txt", output.ToString());
-    }
+    static ConversionResult ConversionResult(PlainTextOutput output) =>
+        new(null,"txt", output.ToString());
 }

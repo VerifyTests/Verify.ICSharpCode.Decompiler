@@ -34,10 +34,8 @@ using System.ComponentModel;
 public class Target :
     INotifyPropertyChanged
 {
-    void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
+    void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
         PropertyChanged?.Invoke(this, new(propertyName));
-    }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -54,7 +52,7 @@ public class Target :
     }
 }
 ```
-<sup><a href='/src/Tests/Target.cs#L1-L24' title='Snippet source file'>snippet source</a> | <a href='#snippet-Target.cs' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Target.cs#L1-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-Target.cs' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 

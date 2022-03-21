@@ -3,10 +3,8 @@
 public class Target :
     INotifyPropertyChanged
 {
-    void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
+    void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
         PropertyChanged?.Invoke(this, new(propertyName));
-    }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
