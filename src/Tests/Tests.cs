@@ -99,24 +99,5 @@ public class Tests
         VerifyICSharpCodeDecompiler.Enable();
         #endregion
         assemblyPath = Assembly.GetExecutingAssembly().Location;
-
-        VerifierSettings.AddScrubber(builder =>
-        {
-            using var sr = new StringReader(builder.ToString());
-            builder.Clear();
-            string? line;
-            var index = 0;
-            while ((line = sr.ReadLine()) != null)
-            {
-                index++;
-                if (index > 45)
-                {
-                    break;
-                }
-
-                builder.AppendLine(line);
-            }
-            builder.AppendLine("...");
-        });
     }
 }

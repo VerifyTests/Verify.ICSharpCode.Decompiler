@@ -28,4 +28,3 @@
 
 	IL_0019: ret
 } // end of method Target::OnPropertyChanged
-...
