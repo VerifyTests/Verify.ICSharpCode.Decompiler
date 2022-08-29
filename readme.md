@@ -14,14 +14,15 @@ https://nuget.org/packages/Verify.ICSharpCode.Decompiler/
 
 ## Usage
 
-Enable once at assembly load time:
-
-<!-- snippet: Enable -->
+<!-- snippet: enable -->
 <a id='snippet-enable'></a>
 ```cs
-VerifyICSharpCodeDecompiler.Enable();
+[ModuleInitializer]
+public static void Init()
+{
+    VerifyICSharpCodeDecompiler.Enable();
 ```
-<sup><a href='/src/Tests/Tests.cs#L98-L100' title='Snippet source file'>snippet source</a> | <a href='#snippet-enable' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/ModuleInitializer.cs#L3-L10' title='Snippet source file'>snippet source</a> | <a href='#snippet-enable' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Then given the following type:

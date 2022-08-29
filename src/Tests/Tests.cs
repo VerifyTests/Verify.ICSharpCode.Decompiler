@@ -5,7 +5,7 @@ using VerifyTests.ICSharpCode.Decompiler;
 [TestFixture]
 public class Tests
 {
-    static string assemblyPath;
+    static string assemblyPath = Assembly.GetExecutingAssembly().Location;
 
     #region TypeDefinitionUsage
     [Test]
@@ -91,13 +91,5 @@ public class Tests
                 return Verify(new TypeToDisassemble(file, "Missing"));
             });
         await Verify(exception);
-    }
-
-    static Tests()
-    {
-        #region Enable
-        VerifyICSharpCodeDecompiler.Enable();
-        #endregion
-        assemblyPath = Assembly.GetExecutingAssembly().Location;
     }
 }
