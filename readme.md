@@ -116,7 +116,7 @@ Result:
 			.custom instance void [System.Runtime]System.Runtime.CompilerServices.CallerMemberNameAttribute::.ctor() = (
 				01 00 00 00
 			)
-		// Method begins at RVA 0x2092
+		// Method begins at RVA 0x20a8
 		// Header size: 1
 		// Code size: 26 (0x1a)
 		.maxstack 8
@@ -146,7 +146,7 @@ Result:
 		.custom instance void [System.Runtime]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = (
 			01 00 00 00
 		)
-		// Method begins at RVA 0x20b0
+		// Method begins at RVA 0x20c4
 		// Header size: 12
 		// Code size: 41 (0x29)
 		.maxstack 3
@@ -188,7 +188,7 @@ Result:
 		.custom instance void [System.Runtime]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = (
 			01 00 00 00
 		)
-		// Method begins at RVA 0x20e8
+		// Method begins at RVA 0x20fc
 		// Header size: 12
 		// Code size: 41 (0x29)
 		.maxstack 3
@@ -225,7 +225,7 @@ Result:
 	.method public hidebysig specialname 
 		instance string get_Property () cil managed 
 	{
-		// Method begins at RVA 0x211d
+		// Method begins at RVA 0x2131
 		// Header size: 1
 		// Code size: 7 (0x7)
 		.maxstack 8
@@ -240,7 +240,7 @@ Result:
 			string 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x2125
+		// Method begins at RVA 0x2139
 		// Header size: 1
 		// Code size: 21 (0x15)
 		.maxstack 8
@@ -259,7 +259,7 @@ Result:
 	.method public hidebysig specialname rtspecialname 
 		instance void .ctor () cil managed 
 	{
-		// Method begins at RVA 0x213b
+		// Method begins at RVA 0x214f
 		// Header size: 1
 		// Code size: 8 (0x8)
 		.maxstack 8
@@ -339,7 +339,7 @@ Result:
 		.custom instance void [System.Runtime]System.Runtime.CompilerServices.CallerMemberNameAttribute::.ctor() = (
 			01 00 00 00
 		)
-	// Method begins at RVA 0x2092
+	// Method begins at RVA 0x20a8
 	// Header size: 1
 	// Code size: 26 (0x1a)
 	.maxstack 8
