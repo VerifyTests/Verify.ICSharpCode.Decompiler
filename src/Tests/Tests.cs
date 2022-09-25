@@ -65,7 +65,7 @@ public class Tests
             {
                 using var file = new PEFile(assemblyPath);
                 return Verify(new MethodToDisassemble(file, "Target", "Missing"));
-            });
+            })!;
         await Verify(exception);
     }
 
@@ -77,7 +77,7 @@ public class Tests
             {
                 using var file = new PEFile(assemblyPath);
                 return Verify(new PropertyToDisassemble(file, "Target", "Missing"));
-            });
+            })!;
         await Verify(exception);
     }
 
@@ -89,7 +89,7 @@ public class Tests
             {
                 using var file = new PEFile(assemblyPath);
                 return Verify(new TypeToDisassemble(file, "Missing"));
-            });
+            })!;
         await Verify(exception);
     }
 }
