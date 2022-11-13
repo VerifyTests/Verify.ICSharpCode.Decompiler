@@ -1,4 +1,4 @@
-﻿using ICSharpCode.Decompiler;
+using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Metadata;
 using VerifyTests.ICSharpCode.Decompiler;
 
@@ -92,4 +92,13 @@ public class Tests
             })!;
         await Verify(exception);
     }
+
+    #region BackwardCompatibility
+    [Test]
+    public Task BackwardCompatibility()
+    {
+        using var file = new PEFile(assemblyPath);
+        return Verify(new TypeToDisassemble(file, "Target")).DontNormalizeIL();
+    }
+    #endregion
 }

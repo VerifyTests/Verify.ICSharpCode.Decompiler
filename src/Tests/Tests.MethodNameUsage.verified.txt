@@ -7,7 +7,6 @@
 		.custom instance void [System.Runtime]System.Runtime.CompilerServices.CallerMemberNameAttribute::.ctor() = (
 			01 00 00 00
 		)
-	// Method begins at RVA 0x20b8
 	// Header size: 1
 	// Code size: 26 (0x1a)
 	.maxstack 8
