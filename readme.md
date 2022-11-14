@@ -359,9 +359,12 @@ Result:
 
 ### Settings
 
-Starting with version 4.0 the generated IL is normalized by default, i.e. types and members are sorted by name, and RVA adress comments are stripped, to avoid failed tests only because the binary layout has changed.
+Starting with version 4.0 the generated IL is normalized by default, to avoid failed tests only because the binary layout has changed:
 
-To get backward compatible behavior, use the `DontNormalizeIL` setting:
+- types and members are sorted by name
+- RVA adress comments are stripped 
+
+To turn of the sorting, use the `DontNormalizeIL` setting. It will then decompile IL reflecting the original layout:
 
 <!-- snippet: BackwardCompatibility -->
 <a id='snippet-backwardcompatibility'></a>

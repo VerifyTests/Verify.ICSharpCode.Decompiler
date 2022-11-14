@@ -51,17 +51,13 @@ public static class VerifyICSharpCodeDecompiler
     {
         PlainTextOutput output = new();
         ReflectionDisassemblerImport disassembler = new(output, default);
-        var normalizeIl = context.GetNormalizeIL();
 
-        if (normalizeIl)
+        if (context.GetNormalizeIL())
             disassembler.Filter = new SortByNameFilter();
 
         action(disassembler);
 
-        var data = output.ToString();
-
-        if (normalizeIl)
-            data = RvaScrubber.Replace(data, string.Empty);
+        var data = RvaScrubber.Replace(output.ToString(), string.Empty);
 
         return new(null, "txt", data);
     }
