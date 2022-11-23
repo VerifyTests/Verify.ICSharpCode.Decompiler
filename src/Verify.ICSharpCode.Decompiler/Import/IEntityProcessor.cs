@@ -1,6 +1,4 @@
-// ReSharper disable All
-
-// Copyright (c) 2022 tom-englert.de for the SharpDevelop Team
+﻿// Copyright (c) 2022 Tom Englert
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this
 // software and associated documentation files (the "Software"), to deal in the Software
@@ -21,20 +19,26 @@
 #nullable enable
 
 using System.Collections.Generic;
-using System.Linq;
+using System.Reflection.Metadata;
+
+using ICSharpCode.Decompiler.Metadata;
 
 namespace ICSharpCode.Decompiler.Disassembler
 {
-	public interface IFilter
+	public interface IEntityProcessor
 	{
-		ICollection<T> Filter<T>(ICollection<T> items) where T : Adapter;
-	}
+		IReadOnlyCollection<InterfaceImplementationHandle> Process(PEFile module, IReadOnlyCollection<InterfaceImplementationHandle> items);
 
-	public class SortByNameFilter : IFilter
-	{
-		public ICollection<T> Filter<T>(ICollection<T> items) where T : Adapter
-		{
-			return items.OrderBy(item => item.DisplayName).ToArray();
-		}
+		IReadOnlyCollection<TypeDefinitionHandle> Process(PEFile module, IReadOnlyCollection<TypeDefinitionHandle> items);
+
+		IReadOnlyCollection<MethodDefinitionHandle> Process(PEFile module, IReadOnlyCollection<MethodDefinitionHandle> items);
+
+		IReadOnlyCollection<PropertyDefinitionHandle> Process(PEFile module, IReadOnlyCollection<PropertyDefinitionHandle> items);
+
+		IReadOnlyCollection<EventDefinitionHandle> Process(PEFile module, IReadOnlyCollection<EventDefinitionHandle> items);
+
+		IReadOnlyCollection<FieldDefinitionHandle> Process(PEFile module, IReadOnlyCollection<FieldDefinitionHandle> items);
+
+		IReadOnlyCollection<CustomAttributeHandle> Process(PEFile module, IReadOnlyCollection<CustomAttributeHandle> items);
 	}
 }

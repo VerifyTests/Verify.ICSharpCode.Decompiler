@@ -53,7 +53,7 @@ public static class VerifyICSharpCodeDecompiler
         ReflectionDisassemblerImport disassembler = new(output, default);
 
         if (context.GetNormalizeIL())
-            disassembler.Filter = new SortByNameFilter();
+            disassembler.EntityProcessor = new SortByNameProcessor();
 
         action(disassembler);
 
