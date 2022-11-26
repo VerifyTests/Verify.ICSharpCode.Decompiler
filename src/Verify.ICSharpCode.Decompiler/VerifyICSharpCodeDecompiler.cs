@@ -1,4 +1,5 @@
-﻿using ICSharpCode.Decompiler;
+using System.Text.RegularExpressions;
+using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Disassembler;
 using VerifyTests.ICSharpCode.Decompiler;
 
@@ -6,6 +7,8 @@ namespace VerifyTests;
 
 public static class VerifyICSharpCodeDecompiler
 {
+    static readonly Regex RvaScrubber = new(@"[ \t]+// Method begins at RVA 0x\w{4}\r?\n");
+
     public static void Enable()
     {
         VerifierSettings.RegisterFileConverter<TypeToDisassemble>(ConvertTypeDefinitionHandle);
@@ -13,30 +16,49 @@ public static class VerifyICSharpCodeDecompiler
         VerifierSettings.RegisterFileConverter<PropertyToDisassemble>(ConvertPropertyDefinitionHandle);
     }
 
-    static ConversionResult ConvertTypeDefinitionHandle(TypeToDisassemble type, IReadOnlyDictionary<string, object> _)
+    public static VerifySettings DontNormalizeIL(this VerifySettings settings)
     {
-        PlainTextOutput output = new();
-        ReflectionDisassembler disassembler = new(output, default);
-        disassembler.DisassembleType(type.file, type.type);
-        return ConversionResult(output);
+        settings.Context["VerifyICSharpCodeDecompiler.Normalize"] = false;
+        return settings;
     }
 
-    static ConversionResult ConvertPropertyDefinitionHandle(PropertyToDisassemble property, IReadOnlyDictionary<string, object> _)
+    public static SettingsTask DontNormalizeIL(this SettingsTask settings)
     {
-        PlainTextOutput output = new();
-        ReflectionDisassembler disassembler = new(output, default);
-        disassembler.DisassembleProperty(property.file, property.Property);
-        return ConversionResult(output);
+        settings.CurrentSettings.DontNormalizeIL();
+        return settings;
     }
 
-    static ConversionResult ConvertMethodDefinitionHandle(MethodToDisassemble method, IReadOnlyDictionary<string, object> _)
+    static bool GetNormalizeIL(this IReadOnlyDictionary<string, object> context)
     {
-        PlainTextOutput output = new();
-        ReflectionDisassembler disassembler = new(output, default);
-        disassembler.DisassembleMethod(method.file, method.method);
-        return ConversionResult(output);
+        if (context.TryGetValue("VerifyICSharpCodeDecompiler.Normalize", out var value) && value is bool result)
+        {
+            return result;
+        }
+
+        return true;
     }
 
-    static ConversionResult ConversionResult(PlainTextOutput output) =>
-        new(null,"txt", output.ToString());
+    static ConversionResult ConvertTypeDefinitionHandle(TypeToDisassemble type, IReadOnlyDictionary<string, object> context) =>
+        Convert(context, disassembler => disassembler.DisassembleType(type.file, type.type));
+
+    static ConversionResult ConvertPropertyDefinitionHandle(PropertyToDisassemble property, IReadOnlyDictionary<string, object> context) =>
+        Convert(context, disassembler => disassembler.DisassembleProperty(property.file, property.Property));
+
+    static ConversionResult ConvertMethodDefinitionHandle(MethodToDisassemble method, IReadOnlyDictionary<string, object> context) =>
+        Convert(context, disassembler => disassembler.DisassembleMethod(method.file, method.method));
+
+    static ConversionResult Convert(IReadOnlyDictionary<string, object> context, Action<ReflectionDisassemblerImport> action)
+    {
+        PlainTextOutput output = new();
+        ReflectionDisassemblerImport disassembler = new(output, default);
+
+        if (context.GetNormalizeIL())
+            disassembler.EntityProcessor = new SortByNameProcessor();
+
+        action(disassembler);
+
+        var data = RvaScrubber.Replace(output.ToString(), string.Empty);
+
+        return new(null, "txt", data);
+    }
 }
