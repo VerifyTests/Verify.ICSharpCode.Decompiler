@@ -359,7 +359,7 @@ Result:
 
 ### Settings
 
-Starting with version 4.0 the generated IL is normalized by default, to avoid failed tests only because the binary layout has changed:
+Starting with version 3.2 the generated IL is normalized by default, to avoid failed tests only because the binary layout has changed:
 
 - types and members are sorted by name
 - RVA adress comments are stripped 
