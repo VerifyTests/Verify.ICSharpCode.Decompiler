@@ -1,4 +1,4 @@
-﻿using System.Reflection.Metadata;
+using System.Reflection.Metadata;
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Metadata;
 
@@ -12,7 +12,7 @@ public static class Extensions
             .SingleOrDefault(handle =>
             {
                 var fullName = handle.GetFullTypeName(file.Metadata);
-                return fullName.Name == typeName;
+                return fullName.ToILNameString() == typeName;
             });
         if (type == default)
         {
@@ -50,7 +50,14 @@ public static class Extensions
         foreach (var handle in typeDefinition.GetMethods())
         {
             var definition = metadata.GetMethodDefinition(handle);
-            if (metadata.GetString(definition.Name) == methodName)
+            var name = metadata.GetString(definition.Name);
+            var genericParameterCount = definition.GetGenericParameters().Count;
+            if (genericParameterCount > 0)
+            {
+                name += $"`{genericParameterCount}";
+            }
+
+            if (name == methodName)
             {
                 return handle;
             }

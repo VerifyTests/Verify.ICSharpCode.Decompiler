@@ -376,7 +376,7 @@ public Task BackwardCompatibility()
     return Verify(new TypeToDisassemble(file, "Target")).DontNormalizeIL();
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L96-L103' title='Snippet source file'>snippet source</a> | <a href='#snippet-backwardcompatibility' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L111-L118' title='Snippet source file'>snippet source</a> | <a href='#snippet-backwardcompatibility' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Icon

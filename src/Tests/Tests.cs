@@ -93,6 +93,21 @@ public class Tests
         await Verify(exception);
     }
 
+    [Test]
+    public void GenericLookup()
+    {
+        using var file = new PEFile(assemblyPath);
+        var type1 = file.FindType("GenericTarget`1");
+        Assert.NotNull(type1);
+        var type2 = file.FindType("GenericTarget`2");
+        Assert.NotNull(type2);
+        var method1 = file.FindMethod("GenericTarget`1", "GenericMethod1`1");
+        Assert.NotNull(method1);
+        var method2 = file.FindMethod("GenericTarget`2", "GenericMethod2`1");
+        Assert.NotNull(method2);
+    }
+
+
     #region BackwardCompatibility
     [Test]
     public Task BackwardCompatibility()
