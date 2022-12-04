@@ -15,3 +15,13 @@ public class GenericTarget<T1, T2>
 
     public T1 GenericMethod2<T3>() => default!;
 }
+
+public class OuterType
+{
+    private class NestedType
+    {
+        private class NestedNestedType
+        {
+        }
+    }
+}
