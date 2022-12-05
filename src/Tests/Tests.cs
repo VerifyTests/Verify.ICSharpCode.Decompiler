@@ -107,6 +107,18 @@ public class Tests
         Assert.NotNull(method2);
     }
 
+    [Test]
+    public void NestedTypeLookup()
+    {
+        using var file = new PEFile(assemblyPath);
+        var type1 = file.FindType("OuterType");
+        Assert.NotNull(type1);
+        var type2 = file.FindType("OuterType.NestedType");
+        Assert.NotNull(type2);
+        var type3 = file.FindType("OuterType.NestedType.NestedNestedType");
+        Assert.NotNull(type3);
+    }
+
 
     #region BackwardCompatibility
     [Test]

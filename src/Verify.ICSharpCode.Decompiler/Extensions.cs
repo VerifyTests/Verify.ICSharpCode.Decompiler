@@ -12,7 +12,9 @@ public static class Extensions
             .SingleOrDefault(handle =>
             {
                 var fullName = handle.GetFullTypeName(file.Metadata);
-                return fullName.ToILNameString() == typeName;
+                var ilName = fullName.ToILNameString();
+                var friendlyName = ilName.Replace("/", ".");
+                return friendlyName == typeName;
             });
         if (type == default)
         {
