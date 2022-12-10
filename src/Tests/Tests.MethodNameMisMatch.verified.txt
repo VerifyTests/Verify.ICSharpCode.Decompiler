@@ -1,9 +1,9 @@
 ﻿{
-  Type: Exception,
+  Type: InvalidOperationException,
   Message: Could not find `Target.Missing` in `{CurrentDirectory}Tests.dll`,
   StackTrace:
-at VerifyTests.ICSharpCode.Decompiler.Extensions.FindMethod(PEFile file, String typeName, String methodName)
-at VerifyTests.MethodToDisassemble..ctor(PEFile file, String typeName, String methodName)
+at VerifyTests.ICSharpCode.Decompiler.Extensions.FindMethod(PEFile file, String typeName, String methodName, Func`2 predicate)
+at VerifyTests.MethodToDisassemble..ctor(PEFile file, String typeName, String methodName, Func`2 predicate)
 at Tests.<>c.<MethodNameMisMatch>b__5_0()
 at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(Func`1 invoke)
 at NUnit.Framework.Assert.ThrowsAsync(IResolveConstraint expression, AsyncTestDelegate code, String message, Object[] args)

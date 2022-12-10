@@ -1,7 +1,8 @@
 ﻿{
-  Type: Exception,
+  Type: InvalidOperationException,
   Message: Could not find `Missing` in `{CurrentDirectory}Tests.dll`,
   StackTrace:
+at VerifyTests.ICSharpCode.Decompiler.Extensions.FindTypeDefinition(PEFile file, String typeName)
 at VerifyTests.ICSharpCode.Decompiler.Extensions.FindType(PEFile file, String typeName)
 at VerifyTests.ICSharpCode.Decompiler.TypeToDisassemble..ctor(PEFile file, String typeName)
 at Tests.<>c.<TypeNameMisMatch>b__7_0()
