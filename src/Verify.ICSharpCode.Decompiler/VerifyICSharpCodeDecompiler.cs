@@ -7,7 +7,7 @@ namespace VerifyTests;
 
 public static class VerifyICSharpCodeDecompiler
 {
-    static readonly Regex RvaScrubber = new(@"[ \t]+// Method begins at RVA 0x\w{4}\r?\n");
+    static readonly Regex RvaScrubber = new(@"[ \t]+// Method begins at RVA 0x[0-9A-F]+\r?\n", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
     public static void Enable()
     {
