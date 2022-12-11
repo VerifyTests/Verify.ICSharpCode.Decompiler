@@ -2,7 +2,7 @@
 <Project>
   <PropertyGroup>
     <NoWarn>CS1591;CS0649;CS8632</NoWarn>
-    <Version>3.2.1</Version>
+    <Version>3.2.2</Version>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <PackageTags>Decompiler, ICSharpCode, Verify</PackageTags>
     <Description>Extends Verify (https://github.com/VerifyTests/Verify) to allow verification of assemblies via ICSharpCode.Decompiler (https://github.com/icsharpcode/ILSpy/wiki/Getting-Started-With-ICSharpCode.Decompiler).</Description>
