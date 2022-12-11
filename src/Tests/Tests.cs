@@ -98,13 +98,13 @@ public class Tests
     {
         using var file = new PEFile(assemblyPath);
         var type1 = file.FindType("GenericTarget`1");
-        Assert.True(type1 != default); ;
+        Assert.True(type1 != default);
         var type2 = file.FindType("GenericTarget`2");
-        Assert.True(type2 != default); ;
+        Assert.True(type2 != default);
         var method1 = file.FindMethod("GenericTarget`1", "GenericMethod1`1");
-        Assert.True(method1 != default); ;
+        Assert.True(method1 != default);
         var method2 = file.FindMethod("GenericTarget`2", "GenericMethod2`1");
-        Assert.True(method2 != default); ;
+        Assert.True(method2 != default);
     }
 
     [Test]
@@ -112,13 +112,13 @@ public class Tests
     {
         using var file = new PEFile(assemblyPath);
         var type1 = file.FindType("OuterType");
-        Assert.True(type1 != default); ;
+        Assert.True(type1 != default);
         var type2 = file.FindType("OuterType.NestedType");
-        Assert.True(type2 != default); ;
+        Assert.True(type2 != default);
         var type3 = file.FindType("OuterType.NestedType.NestedNestedType");
-        Assert.True(type3 != default); ;
+        Assert.True(type3 != default);
         var type4 = file.FindType("OuterType+NestedType+NestedNestedType");
-        Assert.True(type3 != default); ;
+        Assert.True(type3 != default);
     }
 
     [Test]
@@ -135,7 +135,7 @@ public class Tests
     {
         using var file = new PEFile(assemblyPath);
         var type = file.FindType("GenericTarget`1");
-        Assert.True(type != default); ;
+        Assert.True(type != default);
 
         Assert.Throws<InvalidOperationException>(() => file.FindMethod("GenericTarget`1", "Overload"));
 
@@ -144,7 +144,7 @@ public class Tests
 
         Assert.Throws<InvalidOperationException>(() => file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters.Count == 2));
 
-        method = file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters.Count == 2 && m.Parameters[1].Type.ReflectionName == "System.Double");
+        method = file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters is [_, {Type.ReflectionName: "System.Double"}]);
         Assert.True(method != default);
     }
 

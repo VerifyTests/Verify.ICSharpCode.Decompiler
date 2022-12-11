@@ -28,96 +28,82 @@ using ICSharpCode.Decompiler.Metadata;
 
 namespace ICSharpCode.Decompiler.Disassembler
 {
-	public class SortByNameProcessor : IEntityProcessor
-	{
-		public IReadOnlyCollection<InterfaceImplementationHandle> Process(PEFile module,
-			IReadOnlyCollection<InterfaceImplementationHandle> items)
-		{
-			return items.OrderBy(item => GetSortKey(item, module)).ToArray();
-		}
+    public class SortByNameProcessor : IEntityProcessor
+    {
+        public IReadOnlyCollection<InterfaceImplementationHandle> Process(PEFile module,
+            IReadOnlyCollection<InterfaceImplementationHandle> items) =>
+            items.OrderBy(item => GetSortKey(item, module)).ToArray();
 
-		public IReadOnlyCollection<TypeDefinitionHandle> Process(PEFile module,
-			IReadOnlyCollection<TypeDefinitionHandle> items)
-		{
-			return items.OrderBy(item => GetSortKey(item, module)).ToArray();
-		}
+        public IReadOnlyCollection<TypeDefinitionHandle> Process(PEFile module,
+            IReadOnlyCollection<TypeDefinitionHandle> items) =>
+            items.OrderBy(item => GetSortKey(item, module)).ToArray();
 
-		public IReadOnlyCollection<MethodDefinitionHandle> Process(PEFile module,
-			IReadOnlyCollection<MethodDefinitionHandle> items)
-		{
-			return items.OrderBy(item => GetSortKey(item, module)).ToArray();
-		}
+        public IReadOnlyCollection<MethodDefinitionHandle> Process(PEFile module,
+            IReadOnlyCollection<MethodDefinitionHandle> items) =>
+            items.OrderBy(item => GetSortKey(item, module)).ToArray();
 
-		public IReadOnlyCollection<PropertyDefinitionHandle> Process(PEFile module,
-			IReadOnlyCollection<PropertyDefinitionHandle> items)
-		{
-			return items.OrderBy(item => GetSortKey(item, module)).ToArray();
-		}
+        public IReadOnlyCollection<PropertyDefinitionHandle> Process(PEFile module,
+            IReadOnlyCollection<PropertyDefinitionHandle> items) =>
+            items.OrderBy(item => GetSortKey(item, module)).ToArray();
 
-		public IReadOnlyCollection<EventDefinitionHandle> Process(PEFile module,
-			IReadOnlyCollection<EventDefinitionHandle> items)
-		{
-			return items.OrderBy(item => GetSortKey(item, module)).ToArray();
-		}
+        public IReadOnlyCollection<EventDefinitionHandle> Process(PEFile module,
+            IReadOnlyCollection<EventDefinitionHandle> items) =>
+            items.OrderBy(item => GetSortKey(item, module)).ToArray();
 
-		public IReadOnlyCollection<FieldDefinitionHandle> Process(PEFile module,
-			IReadOnlyCollection<FieldDefinitionHandle> items)
-		{
-			return items.OrderBy(item => GetSortKey(item, module)).ToArray();
-		}
+        public IReadOnlyCollection<FieldDefinitionHandle> Process(PEFile module,
+            IReadOnlyCollection<FieldDefinitionHandle> items) =>
+            items.OrderBy(item => GetSortKey(item, module)).ToArray();
 
-		public IReadOnlyCollection<CustomAttributeHandle> Process(PEFile module,
-			IReadOnlyCollection<CustomAttributeHandle> items)
-		{
-			return items.OrderBy(item => GetSortKey(item, module)).ToArray();
-		}
+        public IReadOnlyCollection<CustomAttributeHandle> Process(PEFile module,
+            IReadOnlyCollection<CustomAttributeHandle> items) =>
+            items.OrderBy(item => GetSortKey(item, module)).ToArray();
 
-		private static string GetSortKey(TypeDefinitionHandle handle, PEFile module) =>
-			handle.GetFullTypeName(module.Metadata).ToILNameString();
+        private static string GetSortKey(TypeDefinitionHandle handle, PEFile module) =>
+            handle.GetFullTypeName(module.Metadata).ToILNameString();
 
-		private static string GetSortKey(MethodDefinitionHandle handle, PEFile module)
-		{
-			PlainTextOutput output = new PlainTextOutput();
-			MethodDefinition definition = module.Metadata.GetMethodDefinition(handle);
+        private static string GetSortKey(MethodDefinitionHandle handle, PEFile module)
+        {
+            PlainTextOutput output = new PlainTextOutput();
+            MethodDefinition definition = module.Metadata.GetMethodDefinition(handle);
 
-			// Start with the methods name, skip return type
-			output.Write(module.Metadata.GetString(definition.Name));
-			DisassemblerSignatureTypeProvider signatureProvider = new DisassemblerSignatureTypeProvider(module, output);
-			MethodSignature<Action<ILNameSyntax>> signature =
-				definition.DecodeSignature(signatureProvider, new GenericContext(handle, module));
+            // Start with the methods name, skip return type
+            output.Write(module.Metadata.GetString(definition.Name));
+            DisassemblerSignatureTypeProvider signatureProvider = new DisassemblerSignatureTypeProvider(module, output);
+            MethodSignature<Action<ILNameSyntax>> signature =
+                definition.DecodeSignature(signatureProvider, new GenericContext(handle, module));
 
-			if (signature.GenericParameterCount > 0)
-			{
-				output.Write($"`{signature.GenericParameterCount}");
-			}
+            if (signature.GenericParameterCount > 0)
+            {
+                output.Write($"`{signature.GenericParameterCount}");
+            }
 
             ImportedMethods.WriteParameterList(output, signature);
 
-			return output.ToString();
-		}
+            return output.ToString();
+        }
 
-		private static string GetSortKey(InterfaceImplementationHandle handle, PEFile module) =>
-			module.Metadata.GetInterfaceImplementation(handle)
-				.Interface
-				.GetFullTypeName(module.Metadata)
-				.ToILNameString();
+        private static string GetSortKey(InterfaceImplementationHandle handle, PEFile module) =>
+            module.Metadata.GetInterfaceImplementation(handle)
+                .Interface
+                .GetFullTypeName(module.Metadata)
+                .ToILNameString();
 
-		private static string GetSortKey(FieldDefinitionHandle handle, PEFile module) =>
-			module.Metadata.GetString(module.Metadata.GetFieldDefinition(handle).Name);
+        private static string GetSortKey(FieldDefinitionHandle handle, PEFile module) =>
+            module.Metadata.GetString(module.Metadata.GetFieldDefinition(handle).Name);
 
-		private static string GetSortKey(PropertyDefinitionHandle handle, PEFile module) =>
-			module.Metadata.GetString(module.Metadata.GetPropertyDefinition(handle).Name);
+        private static string GetSortKey(PropertyDefinitionHandle handle, PEFile module) =>
+            module.Metadata.GetString(module.Metadata.GetPropertyDefinition(handle).Name);
 
-		private static string GetSortKey(EventDefinitionHandle handle, PEFile module) =>
-			module.Metadata.GetString(module.Metadata.GetEventDefinition(handle).Name);
+        private static string GetSortKey(EventDefinitionHandle handle, PEFile module) =>
+            module.Metadata.GetString(module.Metadata.GetEventDefinition(handle).Name);
 
-		private static string GetSortKey(CustomAttributeHandle handle, PEFile module) =>
-			module.Metadata.GetCustomAttribute(handle)
-				.Constructor
-				.GetDeclaringTypeImport(module.Metadata)
-				.GetFullTypeName(module.Metadata)
-				.ToILNameString();
-	}
+        private static string GetSortKey(CustomAttributeHandle handle, PEFile module) =>
+            module.Metadata.GetCustomAttribute(handle)
+                .Constructor
+                .GetDeclaringTypeImport(module.Metadata)
+                .GetFullTypeName(module.Metadata)
+                .ToILNameString();
+    }
 
     static class ImportedMethods
     {
@@ -126,10 +112,10 @@ namespace ICSharpCode.Decompiler.Disassembler
             switch (entity.Kind)
             {
                 case HandleKind.MethodDefinition:
-                    var md = metadata.GetMethodDefinition((MethodDefinitionHandle)entity);
+                    var md = metadata.GetMethodDefinition((MethodDefinitionHandle) entity);
                     return md.GetDeclaringType();
                 case HandleKind.MemberReference:
-                    var mr = metadata.GetMemberReference((MemberReferenceHandle)entity);
+                    var mr = metadata.GetMemberReference((MemberReferenceHandle) entity);
                     return mr.Parent;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -147,8 +133,8 @@ namespace ICSharpCode.Decompiler.Disassembler
                     output.Write("..., ");
                 methodSignature.ParameterTypes[i](ILNameSyntax.SignatureNoNamedTypeParameters);
             }
+
             output.Write(")");
         }
-
     }
 }

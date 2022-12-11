@@ -30,7 +30,8 @@ public static class VerifyICSharpCodeDecompiler
 
     static bool GetNormalizeIL(this IReadOnlyDictionary<string, object> context)
     {
-        if (context.TryGetValue("VerifyICSharpCodeDecompiler.Normalize", out var value) && value is bool result)
+        if (context.TryGetValue("VerifyICSharpCodeDecompiler.Normalize", out var value) &&
+            value is bool result)
         {
             return result;
         }
@@ -39,21 +40,23 @@ public static class VerifyICSharpCodeDecompiler
     }
 
     static ConversionResult ConvertTypeDefinitionHandle(TypeToDisassemble type, IReadOnlyDictionary<string, object> context) =>
-        Convert(context, disassembler => disassembler.DisassembleType(type.file, type.type));
+        Convert(context, _ => _.DisassembleType(type.file, type.type));
 
     static ConversionResult ConvertPropertyDefinitionHandle(PropertyToDisassemble property, IReadOnlyDictionary<string, object> context) =>
-        Convert(context, disassembler => disassembler.DisassembleProperty(property.file, property.Property));
+        Convert(context, _ => _.DisassembleProperty(property.file, property.Property));
 
     static ConversionResult ConvertMethodDefinitionHandle(MethodToDisassemble method, IReadOnlyDictionary<string, object> context) =>
-        Convert(context, disassembler => disassembler.DisassembleMethod(method.file, method.method));
+        Convert(context, _ => _.DisassembleMethod(method.file, method.method));
 
     static ConversionResult Convert(IReadOnlyDictionary<string, object> context, Action<ReflectionDisassemblerImport> action)
     {
-        PlainTextOutput output = new();
-        ReflectionDisassemblerImport disassembler = new(output, default);
+        var output = new PlainTextOutput();
+        var disassembler = new ReflectionDisassemblerImport(output, default);
 
         if (context.GetNormalizeIL())
+        {
             disassembler.EntityProcessor = new SortByNameProcessor();
+        }
 
         action(disassembler);
 
