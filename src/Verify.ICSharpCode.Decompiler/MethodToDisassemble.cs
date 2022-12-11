@@ -1,5 +1,6 @@
-﻿using System.Reflection.Metadata;
+using System.Reflection.Metadata;
 using ICSharpCode.Decompiler.Metadata;
+using ICSharpCode.Decompiler.TypeSystem;
 using VerifyTests.ICSharpCode.Decompiler;
 
 namespace VerifyTests;
@@ -15,9 +16,9 @@ public class MethodToDisassemble
         this.file = file;
     }
 
-    public MethodToDisassemble(PEFile file, string typeName, string methodName)
+    public MethodToDisassemble(PEFile file, string typeName, string methodName, Func<IMethod, bool>? predicate = null)
     {
-        method = file.FindMethod(typeName,methodName);
+        this.method = file.FindMethod(typeName, methodName, predicate);
         this.file = file;
     }
 }

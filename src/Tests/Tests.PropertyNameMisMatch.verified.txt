@@ -1,5 +1,5 @@
 ﻿{
-  Type: Exception,
+  Type: InvalidOperationException,
   Message: Could not find `Target.Missing` in `{CurrentDirectory}Tests.dll`,
   StackTrace:
 at VerifyTests.ICSharpCode.Decompiler.Extensions.FindProperty(PEFile file, String typeName, String propertyName)

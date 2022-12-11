@@ -1,70 +1,44 @@
 using System.Reflection.Metadata;
-using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Metadata;
+using ICSharpCode.Decompiler.TypeSystem;
 
 namespace VerifyTests.ICSharpCode.Decompiler;
 
 public static class Extensions
 {
-    public static TypeDefinitionHandle FindType(this PEFile file, string typeName)
+    public static ITypeDefinition FindTypeDefinition(this PEFile file, string typeName)
     {
-        var type = file.Metadata.TypeDefinitions
-            .SingleOrDefault(handle =>
-            {
-                var fullName = handle.GetFullTypeName(file.Metadata);
-                var ilName = fullName.ToILNameString();
-                var friendlyName = ilName.Replace("/", ".");
-                return friendlyName == typeName;
-            });
-        if (type == default)
-        {
-            throw new($"Could not find `{typeName}` in `{file.FileName}`");
-        }
+        var typeSystem = new DecompilerTypeSystem(file, new UniversalAssemblyResolver(null, false, null));
 
-        return type;
+        var typeDefinition = typeSystem.Modules.SelectMany(m => m.TypeDefinitions).SingleOrDefault(t => t.ReflectionName == typeName || t.FullName == typeName) ?? throw new InvalidOperationException($"Could not find `{typeName}` in `{file.FileName}`");
+
+        return typeDefinition;
     }
+
+    public static TypeDefinitionHandle FindType(this PEFile file, string typeName) => (TypeDefinitionHandle)FindTypeDefinition(file, typeName).MetadataToken;
 
     public static PropertyDefinitionHandle FindProperty(this PEFile file, string typeName, string propertyName)
     {
-        var type = file.FindType(typeName);
-        var metadata = file.Metadata;
-        var typeDefinition = metadata.GetTypeDefinition(type);
+        var typeDefinition = file.FindTypeDefinition(typeName);
+        var property = typeDefinition.Properties.SingleOrDefault(p => p.Name == propertyName) ?? throw new InvalidOperationException($"Could not find `{typeName}.{propertyName}` in `{file.FileName}`");
 
-        foreach (var handle in typeDefinition.GetProperties())
-        {
-            var definition = metadata.GetPropertyDefinition(handle);
-            var s = metadata.GetString(definition.Name);
-            if (s == propertyName)
-            {
-                return handle;
-            }
-        }
-
-        throw new($"Could not find `{typeName}.{propertyName}` in `{file.FileName}`");
+        return (PropertyDefinitionHandle)property.MetadataToken;
     }
 
-    public static MethodDefinitionHandle FindMethod(this PEFile file, string typeName, string methodName)
+    public static MethodDefinitionHandle FindMethod(this PEFile file, string typeName, string methodName, Func<IMethod, bool>? predicate = null)
     {
-        var type = file.FindType(typeName);
-        var metadata = file.Metadata;
-        var typeDefinition = metadata.GetTypeDefinition(type);
+        var type = file.FindTypeDefinition(typeName);
 
-        foreach (var handle in typeDefinition.GetMethods())
-        {
-            var definition = metadata.GetMethodDefinition(handle);
-            var name = metadata.GetString(definition.Name);
-            var genericParameterCount = definition.GetGenericParameters().Count;
-            if (genericParameterCount > 0)
-            {
-                name += $"`{genericParameterCount}";
-            }
+        var method = type.Methods.SingleOrDefault(m => m.GetName() == methodName && predicate?.Invoke(m) != false) ?? throw new InvalidOperationException($"Could not find `{typeName}.{methodName}` in `{file.FileName}`");
 
-            if (name == methodName)
-            {
-                return handle;
-            }
-        }
+        return (MethodDefinitionHandle)method.MetadataToken;
+    }
 
-        throw new($"Could not find `{typeName}.{methodName}` in `{file.FileName}`");
+    private static string GetName(this IMethod method)
+    {
+        var name = method.Name;
+        var genericParameterCount = method.TypeParameters.Count;
+
+        return genericParameterCount > 0 ? $"{name}`{genericParameterCount}" : name;
     }
 }

@@ -60,7 +60,7 @@ public class Tests
     [Test]
     public async Task MethodNameMisMatch()
     {
-        var exception = Assert.ThrowsAsync<Exception>(
+        var exception = Assert.ThrowsAsync<InvalidOperationException>(
             () =>
             {
                 using var file = new PEFile(assemblyPath);
@@ -72,7 +72,7 @@ public class Tests
     [Test]
     public async Task PropertyNameMisMatch()
     {
-        var exception = Assert.ThrowsAsync<Exception>(
+        var exception = Assert.ThrowsAsync<InvalidOperationException>(
             () =>
             {
                 using var file = new PEFile(assemblyPath);
@@ -84,7 +84,7 @@ public class Tests
     [Test]
     public async Task TypeNameMisMatch()
     {
-        var exception = Assert.ThrowsAsync<Exception>(
+        var exception = Assert.ThrowsAsync<InvalidOperationException>(
             () =>
             {
                 using var file = new PEFile(assemblyPath);
@@ -98,13 +98,13 @@ public class Tests
     {
         using var file = new PEFile(assemblyPath);
         var type1 = file.FindType("GenericTarget`1");
-        Assert.NotNull(type1);
+        Assert.True(type1 != default); ;
         var type2 = file.FindType("GenericTarget`2");
-        Assert.NotNull(type2);
+        Assert.True(type2 != default); ;
         var method1 = file.FindMethod("GenericTarget`1", "GenericMethod1`1");
-        Assert.NotNull(method1);
+        Assert.True(method1 != default); ;
         var method2 = file.FindMethod("GenericTarget`2", "GenericMethod2`1");
-        Assert.NotNull(method2);
+        Assert.True(method2 != default); ;
     }
 
     [Test]
@@ -112,13 +112,41 @@ public class Tests
     {
         using var file = new PEFile(assemblyPath);
         var type1 = file.FindType("OuterType");
-        Assert.NotNull(type1);
+        Assert.True(type1 != default); ;
         var type2 = file.FindType("OuterType.NestedType");
-        Assert.NotNull(type2);
+        Assert.True(type2 != default); ;
         var type3 = file.FindType("OuterType.NestedType.NestedNestedType");
-        Assert.NotNull(type3);
+        Assert.True(type3 != default); ;
+        var type4 = file.FindType("OuterType+NestedType+NestedNestedType");
+        Assert.True(type3 != default); ;
     }
 
+    [Test]
+    public void NamespaceLookup()
+    {
+        using var file = new PEFile(assemblyPath);
+        var type1 = file.FindType("MyNamespace.TypeInNamespace.NestedType");
+
+        Assert.True(type1 != default);
+    }
+
+    [Test]
+    public void MethodOverloadLookup()
+    {
+        using var file = new PEFile(assemblyPath);
+        var type = file.FindType("GenericTarget`1");
+        Assert.True(type != default); ;
+
+        Assert.Throws<InvalidOperationException>(() => file.FindMethod("GenericTarget`1", "Overload"));
+
+        var method = file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters.Count == 0);
+        Assert.True(method != default);
+
+        Assert.Throws<InvalidOperationException>(() => file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters.Count == 2));
+
+        method = file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters.Count == 2 && m.Parameters[1].Type.ReflectionName == "System.Double");
+        Assert.True(method != default);
+    }
 
     #region BackwardCompatibility
     [Test]
