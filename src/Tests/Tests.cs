@@ -1,3 +1,4 @@
+using System.Reflection;
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Metadata;
 using VerifyTests.ICSharpCode.Decompiler;
@@ -5,7 +6,8 @@ using VerifyTests.ICSharpCode.Decompiler;
 [TestFixture]
 public class Tests
 {
-    static string assemblyPath = Assembly.GetExecutingAssembly().Location;
+    static readonly string assemblyPath = Assembly.GetExecutingAssembly().Location;
+    static readonly string assembly2Path = typeof(AssemblyToProcess.Class).Assembly.Location;
 
     #region TypeDefinitionUsage
     [Test]
@@ -56,6 +58,23 @@ public class Tests
                 "Property"));
     }
     #endregion
+
+    [Test]
+    public Task AssemblyUsage()
+    {
+        using var file = new PEFile(assembly2Path);
+        return Verify(
+            new AssemblyToDisassemble(file, AssemblyOptions.IncludeAssemblyHeader | AssemblyOptions.IncludeAssemblyReferences | AssemblyOptions.IncludeModuleContents));
+    }
+
+    [Test]
+    public Task AssemblyUsageWithScrubbers()
+    {
+        using var file = new PEFile(assembly2Path);
+        return Verify(new AssemblyToDisassemble(file))
+            .ScrubComments()
+            .ScrubBinaryData();
+    }
 
     [Test]
     public async Task MethodNameMisMatch()
@@ -144,7 +163,7 @@ public class Tests
 
         Assert.Throws<InvalidOperationException>(() => file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters.Count == 2));
 
-        method = file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters is [_, {Type.ReflectionName: "System.Double"}]);
+        method = file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters is [_, { Type.ReflectionName: "System.Double" }]);
         Assert.True(method != default);
     }
 
@@ -153,7 +172,8 @@ public class Tests
     public Task BackwardCompatibility()
     {
         using var file = new PEFile(assemblyPath);
-        return Verify(new TypeToDisassemble(file, "Target")).DontNormalizeIL();
+        return Verify(new TypeToDisassemble(file, "Target"))
+            .DontNormalizeIL();
     }
     #endregion
 }

@@ -7,8 +7,10 @@ namespace VerifyTests;
 
 public class MethodToDisassemble
 {
-    internal MethodDefinitionHandle method;
-    internal PEFile file;
+    internal readonly MethodDefinitionHandle method;
+    internal readonly PEFile file;
+
+    static MethodToDisassemble() => VerifyICSharpCodeDecompiler.Enable();
 
     public MethodToDisassemble(PEFile file, MethodDefinitionHandle method)
     {

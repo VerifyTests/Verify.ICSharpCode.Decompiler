@@ -1,12 +1,14 @@
-﻿using System.Reflection.Metadata;
+using System.Reflection.Metadata;
 using ICSharpCode.Decompiler.Metadata;
 
 namespace VerifyTests.ICSharpCode.Decompiler;
 
 public class TypeToDisassemble
 {
-    internal TypeDefinitionHandle type;
-    internal PEFile file;
+    internal readonly TypeDefinitionHandle type;
+    internal readonly PEFile file;
+
+    static TypeToDisassemble() => VerifyICSharpCodeDecompiler.Enable();
 
     public TypeToDisassemble(PEFile file, TypeDefinitionHandle type)
     {

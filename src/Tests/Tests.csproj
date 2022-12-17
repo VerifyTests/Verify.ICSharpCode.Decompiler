@@ -13,6 +13,7 @@
     <PackageReference Include="Verify.NUnit" Version="19.4.0-beta.3" />
     <PackageReference Include="Verify.DiffPlex" Version="2.0.0" />
     <PackageReference Include="ProjectDefaults" Version="1.0.84" PrivateAssets="all" />
+    <ProjectReference Include="..\AssemblyToProcess\AssemblyToProcess.csproj" />
     <ProjectReference Include="..\Verify.ICSharpCode.Decompiler\Verify.ICSharpCode.Decompiler.csproj" />
   </ItemGroup>
 </Project>

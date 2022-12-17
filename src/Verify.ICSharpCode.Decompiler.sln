@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29201.188
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 16.0.29201.188
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Verify.ICSharpCode.Decompiler", "Verify.ICSharpCode.Decompiler\Verify.ICSharpCode.Decompiler.csproj", "{C35E31DE-40A9-45C0-817B-41BE5B7D076E}"
 EndProject
@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyToProcess", "AssemblyToProcess\AssemblyToProcess.csproj", "{3682C4C8-2211-4219-AB6E-983A777DDF4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{76FE87D9-EF6B-4D31-99F2-7099C719AE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76FE87D9-EF6B-4D31-99F2-7099C719AE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76FE87D9-EF6B-4D31-99F2-7099C719AE99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3682C4C8-2211-4219-AB6E-983A777DDF4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3682C4C8-2211-4219-AB6E-983A777DDF4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3682C4C8-2211-4219-AB6E-983A777DDF4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3682C4C8-2211-4219-AB6E-983A777DDF4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
