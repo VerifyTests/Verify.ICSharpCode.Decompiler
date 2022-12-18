@@ -64,7 +64,7 @@ public class Tests
     {
         using var file = new PEFile(assembly2Path);
         return Verify(
-            new AssemblyToDisassemble(file, AssemblyOptions.IncludeAssemblyHeader | AssemblyOptions.IncludeAssemblyReferences | AssemblyOptions.IncludeModuleContents));
+            new AssemblyToDisassemble(file));
     }
 
     [Test]
