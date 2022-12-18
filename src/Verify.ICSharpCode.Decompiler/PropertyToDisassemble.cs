@@ -5,8 +5,6 @@ public class PropertyToDisassemble
     internal readonly PropertyDefinitionHandle Property;
     internal readonly PEFile file;
 
-    static PropertyToDisassemble() => VerifyICSharpCodeDecompiler.Enable();
-
     public PropertyToDisassemble(PEFile file, PropertyDefinitionHandle property)
     {
         Property = property;

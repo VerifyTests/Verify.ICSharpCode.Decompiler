@@ -5,8 +5,6 @@ public class TypeToDisassemble
     internal readonly TypeDefinitionHandle type;
     internal readonly PEFile file;
 
-    static TypeToDisassemble() => VerifyICSharpCodeDecompiler.Enable();
-
     public TypeToDisassemble(PEFile file, TypeDefinitionHandle type)
     {
         this.type = type;

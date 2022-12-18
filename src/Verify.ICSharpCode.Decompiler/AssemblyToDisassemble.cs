@@ -16,8 +16,6 @@ public class AssemblyToDisassemble
     internal readonly PEFile file;
     internal readonly AssemblyOptions options;
 
-    static AssemblyToDisassemble() => VerifyICSharpCodeDecompiler.Enable();
-
     public AssemblyToDisassemble(PEFile file, AssemblyOptions options = AssemblyOptions.IncludeModuleContents)
     {
         this.file = file;

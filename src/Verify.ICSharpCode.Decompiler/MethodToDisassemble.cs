@@ -7,8 +7,6 @@ public class MethodToDisassemble
     internal readonly MethodDefinitionHandle method;
     internal readonly PEFile file;
 
-    static MethodToDisassemble() => VerifyICSharpCodeDecompiler.Enable();
-
     public MethodToDisassemble(PEFile file, MethodDefinitionHandle method)
     {
         this.method = method;
