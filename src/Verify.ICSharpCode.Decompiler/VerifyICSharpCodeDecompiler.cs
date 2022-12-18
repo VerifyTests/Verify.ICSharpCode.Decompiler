@@ -1,9 +1,3 @@
-using System.Text.RegularExpressions;
-using ICSharpCode.Decompiler;
-using ICSharpCode.Decompiler.Disassembler;
-using ICSharpCode.Decompiler.Metadata;
-using VerifyTests.ICSharpCode.Decompiler;
-
 namespace VerifyTests;
 
 public static class VerifyICSharpCodeDecompiler
@@ -12,7 +6,7 @@ public static class VerifyICSharpCodeDecompiler
 
     static readonly Regex BinaryDataExpression = new(@"^[ \t]+[0-9A-F]{2}( [0-9A-F]{2})*", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-    static VerifyICSharpCodeDecompiler()
+    public static void Enable()
     {
         VerifierSettings.RegisterFileConverter<TypeToDisassemble>(ConvertTypeDefinitionHandle);
         VerifierSettings.RegisterFileConverter<MethodToDisassemble>(ConvertMethodDefinitionHandle);
@@ -20,15 +14,8 @@ public static class VerifyICSharpCodeDecompiler
         VerifierSettings.RegisterFileConverter<AssemblyToDisassemble>(ConvertAssembly);
     }
 
-    public static void Enable()
-    {
-    }
-
-    public static VerifySettings ScrubBinaryData(this VerifySettings settings)
-    {
+    public static void ScrubBinaryData(this VerifySettings settings) =>
         settings.ScrubLines(line => BinaryDataExpression.IsMatch(line));
-        return settings;
-    }
 
     public static SettingsTask ScrubBinaryData(this SettingsTask settings)
     {
@@ -36,22 +23,25 @@ public static class VerifyICSharpCodeDecompiler
         return settings;
     }
 
-    public static VerifySettings ScrubComments(this VerifySettings settings)
+    public static void ScrubComments(this VerifySettings settings)
     {
-        settings.ScrubLines(line =>
-        {
-            var commentStart = line.IndexOf("//", StringComparison.Ordinal);
+        settings.ScrubLines(
+            line =>
+            {
+                var commentStart = line.IndexOf("//", StringComparison.Ordinal);
 
-            return commentStart == 0 || (commentStart > 0 && line.Take(commentStart).All(char.IsWhiteSpace));
-        }, ScrubberLocation.Last);
+                return commentStart == 0 ||
+                       (commentStart > 0 && line.Take(commentStart).All(char.IsWhiteSpace));
+            },
+            ScrubberLocation.Last);
 
-        settings.ScrubLinesWithReplace(line =>
-        {
-            var commentStart = line.IndexOf("//", StringComparison.Ordinal);
-            return commentStart < 0 ? line : line.Substring(0, commentStart).TrimEnd();
-        }, ScrubberLocation.Last);
-
-        return settings;
+        settings.ScrubLinesWithReplace(
+            line =>
+            {
+                var commentStart = line.IndexOf("//", StringComparison.Ordinal);
+                return commentStart < 0 ? line : line.Substring(0, commentStart).TrimEnd();
+            },
+            ScrubberLocation.Last);
     }
 
     public static SettingsTask ScrubComments(this SettingsTask settings)
@@ -60,19 +50,16 @@ public static class VerifyICSharpCodeDecompiler
         return settings;
     }
 
-    public static VerifySettings DontNormalizeIL(this VerifySettings settings)
-    {
+    public static void DontNormalizeIl(this VerifySettings settings) =>
         settings.Context["VerifyICSharpCodeDecompiler.Normalize"] = false;
-        return settings;
-    }
 
-    public static SettingsTask DontNormalizeIL(this SettingsTask settings)
+    public static SettingsTask DontNormalizeIl(this SettingsTask settings)
     {
-        settings.CurrentSettings.DontNormalizeIL();
+        settings.CurrentSettings.DontNormalizeIl();
         return settings;
     }
 
-    static bool GetNormalizeIL(this IReadOnlyDictionary<string, object> context)
+    static bool GetNormalizeIl(this IReadOnlyDictionary<string, object> context)
     {
         if (context.TryGetValue("VerifyICSharpCodeDecompiler.Normalize", out var value) &&
             value is bool result)
@@ -129,7 +116,7 @@ public static class VerifyICSharpCodeDecompiler
         var output = new PlainTextOutput();
         var disassembler = new ReflectionDisassemblerImport(output, default);
 
-        if (context.GetNormalizeIL())
+        if (context.GetNormalizeIl())
         {
             disassembler.EntityProcessor = new SortByNameProcessor();
         }
@@ -137,7 +124,7 @@ public static class VerifyICSharpCodeDecompiler
         action(disassembler, output);
 
         var data = RvaScrubber.Replace(output.ToString(), string.Empty);
- 
+
         return new(null, "txt", data);
     }
 }

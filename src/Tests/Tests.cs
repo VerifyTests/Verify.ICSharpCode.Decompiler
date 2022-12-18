@@ -1,8 +1,3 @@
-using System.Reflection;
-using ICSharpCode.Decompiler;
-using ICSharpCode.Decompiler.Metadata;
-using VerifyTests.ICSharpCode.Decompiler;
-
 [TestFixture]
 public class Tests
 {
@@ -10,107 +5,104 @@ public class Tests
     static readonly string assembly2Path = typeof(AssemblyToProcess.Class).Assembly.Location;
 
     #region TypeDefinitionUsage
+
     [Test]
-    public Task TypeDefinitionUsage()
+    public async Task TypeDefinitionUsage()
     {
         using var file = new PEFile(assemblyPath);
         var type = file.Metadata.TypeDefinitions
-            .Single(x =>
-            {
-                var fullName = x.GetFullTypeName(file.Metadata);
-                return fullName.Name == "Target";
-            });
-        return Verify(new TypeToDisassemble(file, type));
+            .Single(
+                x =>
+                {
+                    var fullName = x.GetFullTypeName(file.Metadata);
+                    return fullName.Name == "Target";
+                });
+        await Verify(new TypeToDisassemble(file, type));
     }
+
     #endregion
 
     #region TypeNameUsage
+
     [Test]
-    public Task TypeNameUsage()
+    public async Task TypeNameUsage()
     {
         using var file = new PEFile(assemblyPath);
-        return Verify(new TypeToDisassemble(file, "Target"));
+        await Verify(new TypeToDisassemble(file, "Target"));
     }
+
     #endregion
 
     #region MethodNameUsage
+
     [Test]
-    public Task MethodNameUsage()
+    public async Task MethodNameUsage()
     {
         using var file = new PEFile(assemblyPath);
-        return Verify(
+        await Verify(
             new MethodToDisassemble(
                 file,
                 "Target",
                 "OnPropertyChanged"));
     }
+
     #endregion
 
     #region PropertyNameUsage
+
     [Test]
-    public Task PropertyNameUsage()
+    public async Task PropertyNameUsage()
     {
         using var file = new PEFile(assemblyPath);
-        return Verify(
+        await Verify(
             new PropertyToDisassemble(
                 file,
                 "Target",
                 "Property"));
     }
+
     #endregion
 
     [Test]
-    public Task AssemblyUsage()
+    public async Task AssemblyUsage()
     {
         using var file = new PEFile(assembly2Path);
-        return Verify(
+        await Verify(
             new AssemblyToDisassemble(file));
     }
 
     [Test]
-    public Task AssemblyUsageWithScrubbers()
+    public async Task AssemblyUsageWithScrubbers()
     {
         using var file = new PEFile(assembly2Path);
-        return Verify(new AssemblyToDisassemble(file))
+        await Verify(new AssemblyToDisassemble(file))
             .ScrubComments()
             .ScrubBinaryData();
     }
 
     [Test]
-    public async Task MethodNameMisMatch()
-    {
-        var exception = Assert.ThrowsAsync<InvalidOperationException>(
-            () =>
-            {
-                using var file = new PEFile(assemblyPath);
-                return Verify(new MethodToDisassemble(file, "Target", "Missing"));
-            })!;
-        await Verify(exception);
-    }
+    public Task MethodNameMisMatch() =>
+        ThrowsTask(async () =>
+        {
+            using var file = new PEFile(assemblyPath);
+            await Verify(new MethodToDisassemble(file, "Target", "Missing"));
+        });
 
     [Test]
-    public async Task PropertyNameMisMatch()
-    {
-        var exception = Assert.ThrowsAsync<InvalidOperationException>(
-            () =>
-            {
-                using var file = new PEFile(assemblyPath);
-                return Verify(new PropertyToDisassemble(file, "Target", "Missing"));
-            })!;
-        await Verify(exception);
-    }
+    public Task PropertyNameMisMatch() =>
+        ThrowsTask(async () =>
+        {
+            using var file = new PEFile(assemblyPath);
+            await Verify(new PropertyToDisassemble(file, "Target", "Missing"));
+        });
 
     [Test]
-    public async Task TypeNameMisMatch()
-    {
-        var exception = Assert.ThrowsAsync<InvalidOperationException>(
-            () =>
-            {
-                using var file = new PEFile(assemblyPath);
-                return Verify(new TypeToDisassemble(file, "Missing"));
-            })!;
-        await Verify(exception);
-    }
+    public Task TypeNameMisMatch() =>
+        ThrowsTask(async () =>
+        {
+            using var file = new PEFile(assemblyPath);
+            await Verify(new TypeToDisassemble(file, "Missing"));
+        });
 
     [Test]
     public void GenericLookup()
@@ -137,7 +129,7 @@ public class Tests
         var type3 = file.FindType("OuterType.NestedType.NestedNestedType");
         Assert.True(type3 != default);
         var type4 = file.FindType("OuterType+NestedType+NestedNestedType");
-        Assert.True(type3 != default);
+        Assert.True(type4 != default);
     }
 
     [Test]
@@ -163,17 +155,19 @@ public class Tests
 
         Assert.Throws<InvalidOperationException>(() => file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters.Count == 2));
 
-        method = file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters is [_, { Type.ReflectionName: "System.Double" }]);
+        method = file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters is [_, {Type.ReflectionName: "System.Double"}]);
         Assert.True(method != default);
     }
 
     #region BackwardCompatibility
+
     [Test]
-    public Task BackwardCompatibility()
+    public async Task BackwardCompatibility()
     {
         using var file = new PEFile(assemblyPath);
-        return Verify(new TypeToDisassemble(file, "Target"))
-            .DontNormalizeIL();
+        await Verify(new TypeToDisassemble(file, "Target"))
+            .DontNormalizeIl();
     }
+
     #endregion
 }

@@ -3,12 +3,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata;
 using System.Text;
-using ICSharpCode.Decompiler.Disassembler;
-using ICSharpCode.Decompiler.Metadata;
 using ICSharpCode.Decompiler.TypeSystem;
-using ICSharpCode.Decompiler;
 
 namespace ICSharpCode.Decompiler.Disassembler;
 

@@ -1,7 +1,4 @@
-using System.Reflection.Metadata;
-using ICSharpCode.Decompiler.Metadata;
 using ICSharpCode.Decompiler.TypeSystem;
-using VerifyTests.ICSharpCode.Decompiler;
 
 namespace VerifyTests;
 

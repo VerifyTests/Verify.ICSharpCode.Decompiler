@@ -1,6 +1,3 @@
-using System.Reflection.Metadata;
-using ICSharpCode.Decompiler.Metadata;
-
 namespace VerifyTests.ICSharpCode.Decompiler;
 
 public class TypeToDisassemble

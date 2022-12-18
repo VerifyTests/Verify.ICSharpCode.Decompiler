@@ -21,10 +21,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata;
-
 using ICSharpCode.Decompiler.IL;
-using ICSharpCode.Decompiler.Metadata;
 
 namespace ICSharpCode.Decompiler.Disassembler
 {

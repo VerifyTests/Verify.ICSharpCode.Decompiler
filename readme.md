@@ -62,19 +62,20 @@ public class Target :
 <a id='snippet-typedefinitionusage'></a>
 ```cs
 [Test]
-public Task TypeDefinitionUsage()
+public async Task TypeDefinitionUsage()
 {
     using var file = new PEFile(assemblyPath);
     var type = file.Metadata.TypeDefinitions
-        .Single(x =>
-        {
-            var fullName = x.GetFullTypeName(file.Metadata);
-            return fullName.Name == "Target";
-        });
-    return Verify(new TypeToDisassemble(file, type));
+        .Single(
+            x =>
+            {
+                var fullName = x.GetFullTypeName(file.Metadata);
+                return fullName.Name == "Target";
+            });
+    await Verify(new TypeToDisassemble(file, type));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L12-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-typedefinitionusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L7-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-typedefinitionusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Result:
@@ -289,13 +290,13 @@ A string for the type name can also be used:
 <a id='snippet-typenameusage'></a>
 ```cs
 [Test]
-public Task TypeNameUsage()
+public async Task TypeNameUsage()
 {
     using var file = new PEFile(assemblyPath);
-    return Verify(new TypeToDisassemble(file, "Target"));
+    await Verify(new TypeToDisassemble(file, "Target"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L27-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-typenameusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L25-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-typenameusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Verify Method
@@ -304,17 +305,17 @@ public Task TypeNameUsage()
 <a id='snippet-methodnameusage'></a>
 ```cs
 [Test]
-public Task MethodNameUsage()
+public async Task MethodNameUsage()
 {
     using var file = new PEFile(assemblyPath);
-    return Verify(
+    await Verify(
         new MethodToDisassemble(
             file,
             "Target",
             "OnPropertyChanged"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L36-L47' title='Snippet source file'>snippet source</a> | <a href='#snippet-methodnameusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L36-L49' title='Snippet source file'>snippet source</a> | <a href='#snippet-methodnameusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Result:
@@ -368,14 +369,14 @@ To turn of the sorting, use the `DontNormalizeIL` setting. It will then decompil
 <a id='snippet-backwardcompatibility'></a>
 ```cs
 [Test]
-public Task BackwardCompatibility()
+public async Task BackwardCompatibility()
 {
     using var file = new PEFile(assemblyPath);
-    return Verify(new TypeToDisassemble(file, "Target"))
-        .DontNormalizeIL();
+    await Verify(new TypeToDisassemble(file, "Target"))
+        .DontNormalizeIl();
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L170-L178' title='Snippet source file'>snippet source</a> | <a href='#snippet-backwardcompatibility' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L162-L172' title='Snippet source file'>snippet source</a> | <a href='#snippet-backwardcompatibility' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Icon

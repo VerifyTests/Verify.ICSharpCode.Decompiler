@@ -1,5 +1,3 @@
-using System.Reflection.Metadata;
-using ICSharpCode.Decompiler.Metadata;
 using ICSharpCode.Decompiler.TypeSystem;
 
 namespace VerifyTests.ICSharpCode.Decompiler;
@@ -10,17 +8,20 @@ public static class Extensions
     {
         var typeSystem = new DecompilerTypeSystem(file, new UniversalAssemblyResolver(null, false, null));
 
-        var typeDefinition = typeSystem.Modules.SelectMany(m => m.TypeDefinitions).SingleOrDefault(t => t.ReflectionName == typeName || t.FullName == typeName) ?? throw new InvalidOperationException($"Could not find `{typeName}` in `{file.FileName}`");
-
-        return typeDefinition;
+        return typeSystem.Modules
+            .SelectMany(m => m.TypeDefinitions)
+            .SingleOrDefault(t => t.ReflectionName == typeName || t.FullName == typeName)
+               ?? throw new($"Could not find `{typeName}` in `{file.FileName}`");
     }
 
-    public static TypeDefinitionHandle FindType(this PEFile file, string typeName) => (TypeDefinitionHandle)FindTypeDefinition(file, typeName).MetadataToken;
+    public static TypeDefinitionHandle FindType(this PEFile file, string typeName) =>
+        (TypeDefinitionHandle)FindTypeDefinition(file, typeName).MetadataToken;
 
     public static PropertyDefinitionHandle FindProperty(this PEFile file, string typeName, string propertyName)
     {
         var typeDefinition = file.FindTypeDefinition(typeName);
-        var property = typeDefinition.Properties.SingleOrDefault(p => p.Name == propertyName) ?? throw new InvalidOperationException($"Could not find `{typeName}.{propertyName}` in `{file.FileName}`");
+        var property = typeDefinition.Properties.SingleOrDefault(p => p.Name == propertyName)
+                       ?? throw new($"Could not find `{typeName}.{propertyName}` in `{file.FileName}`");
 
         return (PropertyDefinitionHandle)property.MetadataToken;
     }
@@ -29,12 +30,14 @@ public static class Extensions
     {
         var type = file.FindTypeDefinition(typeName);
 
-        var method = type.Methods.SingleOrDefault(m => m.GetName() == methodName && predicate?.Invoke(m) != false) ?? throw new InvalidOperationException($"Could not find `{typeName}.{methodName}` in `{file.FileName}`");
+        var method = type.Methods
+            .SingleOrDefault(m => m.GetName() == methodName && predicate?.Invoke(m) != false)
+                     ?? throw new($"Could not find `{typeName}.{methodName}` in `{file.FileName}`");
 
         return (MethodDefinitionHandle)method.MetadataToken;
     }
 
-    private static string GetName(this IMethod method)
+    static string GetName(this IMethod method)
     {
         var name = method.Name;
         var genericParameterCount = method.TypeParameters.Count;

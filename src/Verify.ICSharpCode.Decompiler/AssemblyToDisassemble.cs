@@ -1,5 +1,3 @@
-using ICSharpCode.Decompiler.Metadata;
-
 namespace VerifyTests;
 
 [Flags]

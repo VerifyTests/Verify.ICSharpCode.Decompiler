@@ -18,10 +18,6 @@
 
 #nullable enable
 
-using System.Reflection.Metadata;
-
-using ICSharpCode.Decompiler.Metadata;
-
 namespace ICSharpCode.Decompiler.Disassembler;
 
 public interface IEntityProcessor
