@@ -4,7 +4,7 @@
   StackTrace:
 at VerifyTests.ICSharpCode.Decompiler.Extensions.FindProperty(PEFile file, String typeName, String propertyName)
 at VerifyTests.PropertyToDisassemble..ctor(PEFile file, String typeName, String propertyName)
-at Tests.<>c.<PropertyNameMisMatch>b__6_0()
+at Tests.<>c.<PropertyNameMisMatch>b__9_0()
 at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(Func`1 invoke)
 at NUnit.Framework.Assert.ThrowsAsync(IResolveConstraint expression, AsyncTestDelegate code, String message, Object[] args)
 }

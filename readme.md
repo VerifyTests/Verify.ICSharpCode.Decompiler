@@ -56,7 +56,6 @@ public class Target :
 <sup><a href='/src/Tests/Target.cs#L1-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-Target.cs' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-
 ### Verify Type
 
 <!-- snippet: TypeDefinitionUsage -->
@@ -75,7 +74,7 @@ public Task TypeDefinitionUsage()
     return Verify(new TypeToDisassemble(file, type));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L10-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-typedefinitionusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L12-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-typedefinitionusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Result:
@@ -296,9 +295,8 @@ public Task TypeNameUsage()
     return Verify(new TypeToDisassemble(file, "Target"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L25-L32' title='Snippet source file'>snippet source</a> | <a href='#snippet-typenameusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L27-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-typenameusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
-
 
 ### Verify Method
 
@@ -316,7 +314,7 @@ public Task MethodNameUsage()
             "OnPropertyChanged"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L34-L45' title='Snippet source file'>snippet source</a> | <a href='#snippet-methodnameusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L36-L47' title='Snippet source file'>snippet source</a> | <a href='#snippet-methodnameusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Result:
@@ -373,10 +371,11 @@ To turn of the sorting, use the `DontNormalizeIL` setting. It will then decompil
 public Task BackwardCompatibility()
 {
     using var file = new PEFile(assemblyPath);
-    return Verify(new TypeToDisassemble(file, "Target")).DontNormalizeIL();
+    return Verify(new TypeToDisassemble(file, "Target"))
+        .DontNormalizeIL();
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L151-L158' title='Snippet source file'>snippet source</a> | <a href='#snippet-backwardcompatibility' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L170-L178' title='Snippet source file'>snippet source</a> | <a href='#snippet-backwardcompatibility' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Icon

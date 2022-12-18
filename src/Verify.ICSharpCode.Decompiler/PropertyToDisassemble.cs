@@ -1,4 +1,4 @@
-﻿using System.Reflection.Metadata;
+using System.Reflection.Metadata;
 using ICSharpCode.Decompiler.Metadata;
 using VerifyTests.ICSharpCode.Decompiler;
 
@@ -6,8 +6,10 @@ namespace VerifyTests;
 
 public class PropertyToDisassemble
 {
-    internal PropertyDefinitionHandle Property;
-    internal PEFile file;
+    internal readonly PropertyDefinitionHandle Property;
+    internal readonly PEFile file;
+
+    static PropertyToDisassemble() => VerifyICSharpCodeDecompiler.Enable();
 
     public PropertyToDisassemble(PEFile file, PropertyDefinitionHandle property)
     {

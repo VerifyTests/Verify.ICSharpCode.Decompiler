@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Optimize>false</Optimize>
+    <IsPackageProject>false</IsPackageProject>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ProjectDefaults" Version="1.0.84" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>
