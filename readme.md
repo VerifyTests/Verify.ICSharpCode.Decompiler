@@ -376,7 +376,7 @@ public async Task BackwardCompatibility()
         .DontNormalizeIl();
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L162-L172' title='Snippet source file'>snippet source</a> | <a href='#snippet-backwardcompatibility' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L168-L178' title='Snippet source file'>snippet source</a> | <a href='#snippet-backwardcompatibility' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Icon

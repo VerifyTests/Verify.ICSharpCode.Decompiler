@@ -28,6 +28,9 @@ public static partial class VerifyICSharpCodeDecompiler
         }
     }
 
+    static ConversionResult ConvertAssembly(PEFile target, IReadOnlyDictionary<string, object> context) =>
+        Convert(context, (disassembler, output) => ConvertAssembly(target, AssemblyOptions.IncludeModuleContents, disassembler, output));
+
     static ConversionResult ConvertAssembly(AssemblyToDisassemble target, IReadOnlyDictionary<string, object> context) =>
         Convert(context, (disassembler, output) => ConvertAssembly(target.File, target.Options, disassembler, output));
 }

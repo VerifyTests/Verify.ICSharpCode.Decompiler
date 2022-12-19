@@ -70,6 +70,12 @@ public class Tests
         await Verify(
             new AssemblyToDisassemble(file));
     }
+    [Test]
+    public async Task PEFile()
+    {
+        using var file = new PEFile(assembly2Path);
+        await Verify(file);
+    }
 
     [Test]
     public async Task AssemblyUsageWithScrubbers()

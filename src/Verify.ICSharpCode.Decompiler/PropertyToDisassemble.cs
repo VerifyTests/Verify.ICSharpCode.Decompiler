@@ -8,12 +8,12 @@ public class PropertyToDisassemble
     public PropertyToDisassemble(PEFile file, PropertyDefinitionHandle property)
     {
         Property = property;
-        this.File = file;
+        File = file;
     }
 
     public PropertyToDisassemble(PEFile file, string typeName, string propertyName)
     {
         Property = file.FindProperty(typeName,propertyName);
-        this.File = file;
+        File = file;
     }
 }
