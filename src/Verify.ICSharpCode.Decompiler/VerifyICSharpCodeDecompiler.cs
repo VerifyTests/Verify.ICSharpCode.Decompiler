@@ -40,7 +40,12 @@ public static class VerifyICSharpCodeDecompiler
             line =>
             {
                 var commentStart = line.IndexOf("//", StringComparison.Ordinal);
-                return commentStart < 0 ? line : line.Substring(0, commentStart).TrimEnd();
+                if (commentStart < 0)
+                {
+                    return line;
+                }
+
+                return line.Substring(0, commentStart).TrimEnd();
             },
             ScrubberLocation.Last);
     }
