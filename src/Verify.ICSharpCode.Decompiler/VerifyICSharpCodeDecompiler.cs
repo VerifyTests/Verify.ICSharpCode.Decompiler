@@ -1,6 +1,6 @@
 namespace VerifyTests;
 
-public static class VerifyICSharpCodeDecompiler
+public static partial class VerifyICSharpCodeDecompiler
 {
     static readonly Regex RvaScrubber = new(@"[ \t]+// Method begins at RVA 0x[0-9A-F]+\r?\n", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
@@ -76,32 +76,6 @@ public static class VerifyICSharpCodeDecompiler
         return true;
     }
 
-    static void ConvertAssembly(PEFile module, AssemblyOptions options, ReflectionDisassemblerImport disassembler, ITextOutput output)
-    {
-        if ((options & AssemblyOptions.IncludeAssemblyReferences) != 0)
-        {
-            disassembler.WriteAssemblyReferences(module.Metadata);
-            output.WriteLine();
-        }
-
-        if ((options & AssemblyOptions.IncludeAssemblyHeader) != 0)
-        {
-            disassembler.WriteAssemblyHeader(module);
-            output.WriteLine();
-        }
-
-        if ((options & AssemblyOptions.IncludeModuleHeader) != 0)
-        {
-            disassembler.WriteModuleHeader(module);
-            output.WriteLine();
-        }
-
-        if ((options & AssemblyOptions.IncludeModuleContents) != 0)
-        {
-            disassembler.WriteModuleContents(module);
-        }
-    }
-
     static ConversionResult ConvertTypeDefinitionHandle(TypeToDisassemble type, IReadOnlyDictionary<string, object> context) =>
         Convert(context, _ => _.DisassembleType(type.file, type.type));
 
@@ -110,9 +84,6 @@ public static class VerifyICSharpCodeDecompiler
 
     static ConversionResult ConvertMethodDefinitionHandle(MethodToDisassemble method, IReadOnlyDictionary<string, object> context) =>
         Convert(context, _ => _.DisassembleMethod(method.File, method.Method));
-
-    static ConversionResult ConvertAssembly(AssemblyToDisassemble target, IReadOnlyDictionary<string, object> context) =>
-        Convert(context, (disassembler, output) => ConvertAssembly(target.File, target.Options, disassembler, output));
 
     static ConversionResult Convert(IReadOnlyDictionary<string, object> context, Action<ReflectionDisassemblerImport> action) =>
         Convert(context, (disassembler, _) => action(disassembler));
