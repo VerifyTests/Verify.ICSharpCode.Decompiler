@@ -101,13 +101,13 @@ public static class VerifyICSharpCodeDecompiler
         Convert(context, _ => _.DisassembleType(type.file, type.type));
 
     static ConversionResult ConvertPropertyDefinitionHandle(PropertyToDisassemble property, IReadOnlyDictionary<string, object> context) =>
-        Convert(context, _ => _.DisassembleProperty(property.file, property.Property));
+        Convert(context, _ => _.DisassembleProperty(property.File, property.Property));
 
     static ConversionResult ConvertMethodDefinitionHandle(MethodToDisassemble method, IReadOnlyDictionary<string, object> context) =>
-        Convert(context, _ => _.DisassembleMethod(method.file, method.method));
+        Convert(context, _ => _.DisassembleMethod(method.File, method.Method));
 
     static ConversionResult ConvertAssembly(AssemblyToDisassemble target, IReadOnlyDictionary<string, object> context) =>
-        Convert(context, (disassembler, output) => ConvertAssembly(target.file, target.options, disassembler, output));
+        Convert(context, (disassembler, output) => ConvertAssembly(target.File, target.Options, disassembler, output));
 
     static ConversionResult Convert(IReadOnlyDictionary<string, object> context, Action<ReflectionDisassemblerImport> action) =>
         Convert(context, (disassembler, _) => action(disassembler));

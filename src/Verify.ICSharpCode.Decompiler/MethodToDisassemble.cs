@@ -4,18 +4,18 @@ namespace VerifyTests;
 
 public class MethodToDisassemble
 {
-    internal readonly MethodDefinitionHandle method;
-    internal readonly PEFile file;
+    internal readonly MethodDefinitionHandle Method;
+    internal readonly PEFile File;
 
     public MethodToDisassemble(PEFile file, MethodDefinitionHandle method)
     {
-        this.method = method;
-        this.file = file;
+        Method = method;
+        File = file;
     }
 
     public MethodToDisassemble(PEFile file, string typeName, string methodName, Func<IMethod, bool>? predicate = null)
     {
-        this.method = file.FindMethod(typeName, methodName, predicate);
-        this.file = file;
+        Method = file.FindMethod(typeName, methodName, predicate);
+        File = file;
     }
 }

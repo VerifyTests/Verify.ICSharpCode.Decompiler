@@ -3,17 +3,17 @@ namespace VerifyTests;
 public class PropertyToDisassemble
 {
     internal readonly PropertyDefinitionHandle Property;
-    internal readonly PEFile file;
+    internal readonly PEFile File;
 
     public PropertyToDisassemble(PEFile file, PropertyDefinitionHandle property)
     {
         Property = property;
-        this.file = file;
+        this.File = file;
     }
 
     public PropertyToDisassemble(PEFile file, string typeName, string propertyName)
     {
         Property = file.FindProperty(typeName,propertyName);
-        this.file = file;
+        this.File = file;
     }
 }
