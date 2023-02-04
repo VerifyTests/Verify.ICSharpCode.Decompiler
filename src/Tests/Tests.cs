@@ -165,6 +165,14 @@ public class Tests
         Assert.True(method != default);
     }
 
+    [Test]
+    public async Task IlExtension()
+    {
+        using var file = new PEFile(assemblyPath);
+        await Verify(new TypeToDisassemble(file, "Target"))
+            .UseIlExtension();
+    }
+
     #region BackwardCompatibility
 
     [Test]
