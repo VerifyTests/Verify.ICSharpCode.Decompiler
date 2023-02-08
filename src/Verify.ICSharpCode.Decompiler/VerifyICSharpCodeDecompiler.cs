@@ -1,3 +1,5 @@
+using EmptyFiles;
+
 namespace VerifyTests;
 
 public static partial class VerifyICSharpCodeDecompiler
@@ -23,7 +25,8 @@ public static partial class VerifyICSharpCodeDecompiler
         VerifierSettings.RegisterFileConverter<MethodToDisassemble>(ConvertMethodDefinitionHandle);
         VerifierSettings.RegisterFileConverter<PropertyToDisassemble>(ConvertPropertyDefinitionHandle);
         VerifierSettings.RegisterFileConverter<AssemblyToDisassemble>(ConvertAssembly);
-        VerifierSettings.RegisterFileConverter<PEFile>(ConvertAssembly);
+        VerifierSettings.RegisterFileConverter<PEFile>(ConvertAssembly); 
+        FileExtensions.AddTextExtension("il");
     }
 
     static ConversionResult Convert(IReadOnlyDictionary<string, object> context, Action<ReflectionDisassemblerImport> action) =>
@@ -43,6 +46,6 @@ public static partial class VerifyICSharpCodeDecompiler
 
         var data = RvaScrubber.Replace(output.ToString(), string.Empty);
 
-        return new(null, "txt", data);
+        return new(null, "il", data);
     }
 }
