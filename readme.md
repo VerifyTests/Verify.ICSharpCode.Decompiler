@@ -79,9 +79,9 @@ public async Task TypeDefinitionUsage()
 
 Result:
 
-<!-- snippet: Tests.TypeDefinitionUsage.verified.txt -->
-<a id='snippet-Tests.TypeDefinitionUsage.verified.txt'></a>
-```txt
+<!-- snippet: Tests.TypeDefinitionUsage.verified.il -->
+<a id='snippet-Tests.TypeDefinitionUsage.verified.il'></a>
+```il
 .class public auto ansi beforefieldinit Target
 	extends [System.Runtime]System.Object
 	implements .custom instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
@@ -280,7 +280,7 @@ Result:
 
 } // end of class Target
 ```
-<sup><a href='/src/Tests/Tests.TypeDefinitionUsage.verified.txt#L1-L197' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.TypeDefinitionUsage.verified.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.TypeDefinitionUsage.verified.il#L1-L197' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.TypeDefinitionUsage.verified.il' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 A string for the type name can also be used:
@@ -319,9 +319,9 @@ public async Task MethodNameUsage()
 
 Result:
 
-<!-- snippet: Tests.MethodNameUsage.verified.txt -->
-<a id='snippet-Tests.MethodNameUsage.verified.txt'></a>
-```txt
+<!-- snippet: Tests.MethodNameUsage.verified.il -->
+<a id='snippet-Tests.MethodNameUsage.verified.il'></a>
+```il
 .method private hidebysig 
 	instance void OnPropertyChanged (
 		[opt] string propertyName
@@ -352,7 +352,7 @@ Result:
 	IL_0019: ret
 } // end of method Target::OnPropertyChanged
 ```
-<sup><a href='/src/Tests/Tests.MethodNameUsage.verified.txt#L1-L29' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.MethodNameUsage.verified.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.MethodNameUsage.verified.il#L1-L29' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.MethodNameUsage.verified.il' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Settings
