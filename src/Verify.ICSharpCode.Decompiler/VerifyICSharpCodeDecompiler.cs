@@ -4,9 +4,21 @@ public static partial class VerifyICSharpCodeDecompiler
 {
     static readonly Regex RvaScrubber = new(@"[ \t]+// Method begins at RVA 0x[0-9A-F]+\r?\n", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-    public static void Enable()
+    public static bool Initialized { get; private set; }
+
+    [Obsolete("Use Initialize()")]
+    public static void Enable() =>
+        Initialize();
+
+    public static void Initialize()
     {
-        InnerVerifier.ThrowIfVerifyHasBeenRun();
+        if (Initialized)
+        {
+            throw new("Already Initialized");
+        }
+
+        Initialized = true;
+
         VerifierSettings.RegisterFileConverter<TypeToDisassemble>(ConvertTypeDefinitionHandle);
         VerifierSettings.RegisterFileConverter<MethodToDisassemble>(ConvertMethodDefinitionHandle);
         VerifierSettings.RegisterFileConverter<PropertyToDisassemble>(ConvertPropertyDefinitionHandle);

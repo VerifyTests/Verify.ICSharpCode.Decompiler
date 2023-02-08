@@ -19,7 +19,7 @@ https://nuget.org/packages/Verify.ICSharpCode.Decompiler/
 ```cs
 [ModuleInitializer]
 public static void Init() =>
-    VerifyICSharpCodeDecompiler.Enable();
+    VerifyICSharpCodeDecompiler.Initialize();
 ```
 <sup><a href='/src/Tests/ModuleInitializer.cs#L3-L9' title='Snippet source file'>snippet source</a> | <a href='#snippet-enable' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->

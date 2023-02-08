@@ -4,11 +4,11 @@
 
     [ModuleInitializer]
     public static void Init() =>
-        VerifyICSharpCodeDecompiler.Enable();
+        VerifyICSharpCodeDecompiler.Initialize();
 
     #endregion
 
     [ModuleInitializer]
     public static void InitOther() =>
-        VerifyDiffPlex.Initialize();
+        VerifierSettings.InitializePlugins();
 }
