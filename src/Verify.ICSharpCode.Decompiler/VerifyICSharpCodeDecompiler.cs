@@ -25,7 +25,7 @@ public static partial class VerifyICSharpCodeDecompiler
         VerifierSettings.RegisterFileConverter<MethodToDisassemble>(ConvertMethodDefinitionHandle);
         VerifierSettings.RegisterFileConverter<PropertyToDisassemble>(ConvertPropertyDefinitionHandle);
         VerifierSettings.RegisterFileConverter<AssemblyToDisassemble>(ConvertAssembly);
-        VerifierSettings.RegisterFileConverter<PEFile>(ConvertAssembly); 
+        VerifierSettings.RegisterFileConverter<PEFile>(ConvertAssembly);
         FileExtensions.AddTextExtension("il");
     }
 

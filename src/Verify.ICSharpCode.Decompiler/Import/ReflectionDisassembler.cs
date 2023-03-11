@@ -38,7 +38,7 @@ namespace ICSharpCode.Decompiler.Disassembler
     public sealed class ReflectionDisassemblerImport
     {
         readonly ITextOutput output;
-        CancellationToken cancellationToken;
+        Cancellation cancellation;
         bool isInType; // whether we are currently disassembling a whole type (-> defaultCollapsed for foldings)
         MethodBodyDisassembler methodBodyDisassembler;
 
@@ -84,17 +84,17 @@ namespace ICSharpCode.Decompiler.Disassembler
 
         public IEntityProcessor EntityProcessor { get; set; }
 
-        public ReflectionDisassemblerImport(ITextOutput output, CancellationToken cancellationToken)
-            : this(output, new MethodBodyDisassembler(output, cancellationToken), cancellationToken)
+        public ReflectionDisassemblerImport(ITextOutput output, Cancellation cancellation)
+            : this(output, new MethodBodyDisassembler(output, cancellation), cancellation)
         {
         }
 
-        public ReflectionDisassemblerImport(ITextOutput output, MethodBodyDisassembler methodBodyDisassembler, CancellationToken cancellationToken)
+        public ReflectionDisassemblerImport(ITextOutput output, MethodBodyDisassembler methodBodyDisassembler, Cancellation cancellation)
         {
             if (output == null)
                 throw new ArgumentNullException(nameof(output));
             this.output = output;
-            this.cancellationToken = cancellationToken;
+            this.cancellation = cancellation;
             this.methodBodyDisassembler = methodBodyDisassembler;
         }
 
@@ -1800,7 +1800,7 @@ namespace ICSharpCode.Decompiler.Disassembler
                 output.WriteLine("// Nested Types");
                 foreach (var nestedType in nestedTypes)
                 {
-                    cancellationToken.ThrowIfCancellationRequested();
+                    cancellation.ThrowIfCancellationRequested();
                     DisassembleType(module, nestedType);
                     output.WriteLine();
                 }
@@ -1814,7 +1814,7 @@ namespace ICSharpCode.Decompiler.Disassembler
                 output.WriteLine("// Fields");
                 foreach (var field in fields)
                 {
-                    cancellationToken.ThrowIfCancellationRequested();
+                    cancellation.ThrowIfCancellationRequested();
                     DisassembleField(module, field);
                 }
 
@@ -1827,7 +1827,7 @@ namespace ICSharpCode.Decompiler.Disassembler
                 output.WriteLine("// Methods");
                 foreach (var m in methods)
                 {
-                    cancellationToken.ThrowIfCancellationRequested();
+                    cancellation.ThrowIfCancellationRequested();
                     DisassembleMethod(module, m);
                     output.WriteLine();
                 }
@@ -1839,7 +1839,7 @@ namespace ICSharpCode.Decompiler.Disassembler
                 output.WriteLine("// Events");
                 foreach (var ev in events)
                 {
-                    cancellationToken.ThrowIfCancellationRequested();
+                    cancellation.ThrowIfCancellationRequested();
                     DisassembleEvent(module, ev);
                     output.WriteLine();
                 }
@@ -1853,7 +1853,7 @@ namespace ICSharpCode.Decompiler.Disassembler
                 output.WriteLine("// Properties");
                 foreach (var prop in properties)
                 {
-                    cancellationToken.ThrowIfCancellationRequested();
+                    cancellation.ThrowIfCancellationRequested();
                     DisassembleProperty(module, prop);
                 }
 
@@ -2115,7 +2115,7 @@ namespace ICSharpCode.Decompiler.Disassembler
             isInType = true;
             foreach (var td in types)
             {
-                cancellationToken.ThrowIfCancellationRequested();
+                cancellation.ThrowIfCancellationRequested();
                 DisassembleType(module, td);
                 output.WriteLine();
             }
