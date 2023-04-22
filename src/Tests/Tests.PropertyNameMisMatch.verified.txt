@@ -2,7 +2,7 @@
   Type: Exception,
   Message: Could not find `Target.Missing` in `{CurrentDirectory}Tests.dll`,
   StackTrace:
-at VerifyTests.ICSharpCode.Decompiler.Extensions.FindProperty(PEFile file, String typeName, String propertyName)
-at VerifyTests.PropertyToDisassemble..ctor(PEFile file, String typeName, String propertyName)
+at VerifyTests.ICSharpCode.Decompiler.Extensions.FindPropertyInfo(PEFile file, String typeName, String propertyName)
+at VerifyTests.PropertyToDisassemble..ctor(PEFile file, String typeName, String propertyName, PropertyParts partsToDisassemble)
 --- End of stack trace from previous location ---
 }

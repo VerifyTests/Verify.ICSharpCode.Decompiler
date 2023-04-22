@@ -17,13 +17,16 @@ public static class Extensions
     public static TypeDefinitionHandle FindType(this PEFile file, string typeName) =>
         (TypeDefinitionHandle)FindTypeDefinition(file, typeName).MetadataToken;
 
-    public static PropertyDefinitionHandle FindProperty(this PEFile file, string typeName, string propertyName)
+    public static PropertyDefinitionHandle FindProperty(this PEFile file, string typeName, string propertyName) =>
+        (PropertyDefinitionHandle)FindPropertyInfo(file, typeName, propertyName).MetadataToken;
+
+    public static IProperty FindPropertyInfo(this PEFile file, string typeName, string propertyName)
     {
         var typeDefinition = file.FindTypeDefinition(typeName);
         var property = typeDefinition.Properties.SingleOrDefault(p => p.Name == propertyName)
                        ?? throw new($"Could not find `{typeName}.{propertyName}` in `{file.FileName}`");
 
-        return (PropertyDefinitionHandle)property.MetadataToken;
+        return property;
     }
 
     public static MethodDefinitionHandle FindMethod(this PEFile file, string typeName, string methodName, Func<IMethod, bool>? predicate = null)
