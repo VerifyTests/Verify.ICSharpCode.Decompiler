@@ -23,10 +23,8 @@ public static class Extensions
     public static IProperty FindPropertyInfo(this PEFile file, string typeName, string propertyName)
     {
         var typeDefinition = file.FindTypeDefinition(typeName);
-        var property = typeDefinition.Properties.SingleOrDefault(p => p.Name == propertyName)
+        return typeDefinition.Properties.SingleOrDefault(p => p.Name == propertyName)
                        ?? throw new($"Could not find `{typeName}.{propertyName}` in `{file.FileName}`");
-
-        return property;
     }
 
     public static MethodDefinitionHandle FindMethod(this PEFile file, string typeName, string methodName, Func<IMethod, bool>? predicate = null)
