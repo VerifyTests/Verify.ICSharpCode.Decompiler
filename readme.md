@@ -356,6 +356,65 @@ Result:
 <sup><a href='/src/Tests/Tests.MethodNameUsage.verified.il#L1-L29' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.MethodNameUsage.verified.il' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
+### Verify Property
+<!-- snippet: PropertyPartsUsage -->
+<a id='snippet-propertypartsusage'></a>
+```cs
+[Test]
+public async Task PropertyPartsUsage()
+{
+    using var file = new PEFile(assemblyPath);
+    await Verify(
+        new PropertyToDisassemble(
+            file,
+            "Target",
+            "Property",
+            PropertyParts.GetterAndSetter));
+}
+```
+<sup><a href='/src/Tests/Tests.cs#L66-L80' title='Snippet source file'>snippet source</a> | <a href='#snippet-propertypartsusage' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
+
+Result:
+
+<!-- snippet: Tests.PropertyPartsUsage.verified.il -->
+<a id='snippet-Tests.PropertyPartsUsage.verified.il'></a>
+```il
+.method public hidebysig specialname 
+	instance string get_Property () cil managed 
+{
+	// Header size: 1
+	// Code size: 7 (0x7)
+	.maxstack 8
+
+	IL_0000: ldarg.0
+	IL_0001: ldfld string Target::'property'
+	IL_0006: ret
+} // end of method Target::get_Property
+.method public hidebysig specialname 
+	instance void set_Property (
+		string 'value'
+	) cil managed 
+{
+	// Header size: 1
+	// Code size: 21 (0x15)
+	.maxstack 8
+
+	IL_0000: nop
+	IL_0001: ldarg.0
+	IL_0002: ldarg.1
+	IL_0003: stfld string Target::'property'
+	IL_0008: ldarg.0
+	IL_0009: ldstr "Property"
+	IL_000e: call instance void Target::OnPropertyChanged(string)
+	IL_0013: nop
+	IL_0014: ret
+} // end of method Target::set_Property
+```
+<sup><a href='/src/Tests/Tests.PropertyPartsUsage.verified.il#L1-L30' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.PropertyPartsUsage.verified.il' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
+
+
 ### Settings
 
 Starting with version 3.2 the generated IL is normalized by default, to avoid failed tests only because the binary layout has changed:
@@ -376,7 +435,7 @@ public async Task BackwardCompatibility()
         .DontNormalizeIl();
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L168-L178' title='Snippet source file'>snippet source</a> | <a href='#snippet-backwardcompatibility' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L184-L194' title='Snippet source file'>snippet source</a> | <a href='#snippet-backwardcompatibility' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Icon

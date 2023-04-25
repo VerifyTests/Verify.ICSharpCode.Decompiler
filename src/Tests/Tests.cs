@@ -63,6 +63,22 @@ public class Tests
 
     #endregion
 
+    #region PropertyPartsUsage
+
+    [Test]
+    public async Task PropertyPartsUsage()
+    {
+        using var file = new PEFile(assemblyPath);
+        await Verify(
+            new PropertyToDisassemble(
+                file,
+                "Target",
+                "Property",
+                PropertyParts.GetterAndSetter));
+    }
+
+    #endregion
+
     [Test]
     public async Task AssemblyUsage()
     {
@@ -161,7 +177,7 @@ public class Tests
 
         Assert.Throws<InvalidOperationException>(() => file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters.Count == 2));
 
-        method = file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters is [_, {Type.ReflectionName: "System.Double"}]);
+        method = file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters is [_, { Type.ReflectionName: "System.Double" }]);
         Assert.True(method != default);
     }
 

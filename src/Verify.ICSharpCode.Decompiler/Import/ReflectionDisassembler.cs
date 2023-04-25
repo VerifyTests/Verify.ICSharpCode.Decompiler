@@ -1,4 +1,7 @@
 // ReSharper disable All
+#pragma warning disable IDE0007 // Use implicit type
+#pragma warning disable IDE0003 // Use implicit type
+#pragma warning disable IDE0161 // Use implicit type
 #nullable disable
 
 // Copyright (c) 2011 AlphaSierraPapa for the SharpDevelop Team
