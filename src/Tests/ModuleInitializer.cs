@@ -1,4 +1,4 @@
-﻿public static class ModuleInit
+public static class ModuleInit
 {
     #region enable
 
@@ -7,6 +7,10 @@
         VerifyICSharpCodeDecompiler.Initialize();
 
     #endregion
+
+    [ModuleInitializer]
+    public static void AnotherModuleInitializer() =>
+        VerifyICSharpCodeDecompiler.Initialize();
 
     [ModuleInitializer]
     public static void InitOther() =>
