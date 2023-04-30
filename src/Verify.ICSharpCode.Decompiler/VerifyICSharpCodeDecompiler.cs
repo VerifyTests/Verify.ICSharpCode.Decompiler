@@ -6,7 +6,17 @@ public static partial class VerifyICSharpCodeDecompiler
 {
     static readonly Regex RvaScrubber = new(@"[ \t]+// Method begins at RVA 0x[0-9A-F]+\r?\n", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-    public static bool Initialized { get; private set; }
+    static VerifyICSharpCodeDecompiler()
+    {
+        VerifierSettings.RegisterFileConverter<TypeToDisassemble>(ConvertTypeDefinitionHandle);
+        VerifierSettings.RegisterFileConverter<MethodToDisassemble>(ConvertMethodDefinitionHandle);
+        VerifierSettings.RegisterFileConverter<PropertyToDisassemble>(ConvertPropertyDefinitionHandle);
+        VerifierSettings.RegisterFileConverter<AssemblyToDisassemble>(ConvertAssembly);
+        VerifierSettings.RegisterFileConverter<PEFile>(ConvertAssembly);
+        FileExtensions.AddTextExtension("il");
+    }
+
+    public static bool Initialized => true;
 
     [Obsolete("Use Initialize()")]
     public static void Enable() =>
@@ -14,19 +24,6 @@ public static partial class VerifyICSharpCodeDecompiler
 
     public static void Initialize()
     {
-        if (Initialized)
-        {
-            throw new("Already Initialized");
-        }
-
-        Initialized = true;
-
-        VerifierSettings.RegisterFileConverter<TypeToDisassemble>(ConvertTypeDefinitionHandle);
-        VerifierSettings.RegisterFileConverter<MethodToDisassemble>(ConvertMethodDefinitionHandle);
-        VerifierSettings.RegisterFileConverter<PropertyToDisassemble>(ConvertPropertyDefinitionHandle);
-        VerifierSettings.RegisterFileConverter<AssemblyToDisassemble>(ConvertAssembly);
-        VerifierSettings.RegisterFileConverter<PEFile>(ConvertAssembly);
-        FileExtensions.AddTextExtension("il");
     }
 
     static ConversionResult Convert(IReadOnlyDictionary<string, object> context, Action<ReflectionDisassemblerImport> action) =>
