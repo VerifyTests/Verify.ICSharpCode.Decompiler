@@ -4,7 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Argon" Version="0.7.1" />
-    <PackageReference Include="ICSharpCode.Decompiler" Version="7.2.1.6856" />
+    <PackageReference Include="ICSharpCode.Decompiler" Version="8.0.0.7345" />
     <PackageReference Include="System.Reflection.Metadata" Version="7.0.1" />
     <PackageReference Include="Verify" Version="20.0.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
