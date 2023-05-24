@@ -85,10 +85,7 @@ Result:
 ```il
 .class public auto ansi beforefieldinit Target
 	extends [System.Runtime]System.Object
-	implements .custom instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
-		01 00 00 00 00
-	)
-	[System.ObjectModel]System.ComponentModel.INotifyPropertyChanged
+	implements [System.ObjectModel]System.ComponentModel.INotifyPropertyChanged
 {
 	.custom instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
 		01 00 00 00 00
@@ -96,6 +93,11 @@ Result:
 	.custom instance void System.Runtime.CompilerServices.NullableContextAttribute::.ctor(uint8) = (
 		01 00 02 00 00
 	)
+	.interfaceimpl type [System.ObjectModel]System.ComponentModel.INotifyPropertyChanged
+	.custom instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+		01 00 00 00 00
+	)
+
 	// Fields
 	.field private string 'property'
 	.field private class [System.ObjectModel]System.ComponentModel.PropertyChangedEventHandler PropertyChanged
@@ -281,7 +283,7 @@ Result:
 
 } // end of class Target
 ```
-<sup><a href='/src/Tests/Tests.TypeDefinitionUsage.verified.il#L1-L197' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.TypeDefinitionUsage.verified.il' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.TypeDefinitionUsage.verified.il#L1-L199' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.TypeDefinitionUsage.verified.il' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 A string for the type name can also be used:
