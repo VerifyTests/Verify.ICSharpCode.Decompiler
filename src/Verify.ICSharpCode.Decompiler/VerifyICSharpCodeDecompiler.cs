@@ -29,13 +29,13 @@ public static partial class VerifyICSharpCodeDecompiler
         FileExtensions.AddTextExtension("il");
     }
 
-    static ConversionResult Convert(IReadOnlyDictionary<string, object> context, Action<ReflectionDisassemblerImport> action) =>
+    static ConversionResult Convert(IReadOnlyDictionary<string, object> context, Action<ReflectionDisassembler> action) =>
         Convert(context, (disassembler, _) => action(disassembler));
 
-    static ConversionResult Convert(IReadOnlyDictionary<string, object> context, Action<ReflectionDisassemblerImport, ITextOutput> action)
+    static ConversionResult Convert(IReadOnlyDictionary<string, object> context, Action<ReflectionDisassembler, ITextOutput> action)
     {
         var output = new PlainTextOutput();
-        var disassembler = new ReflectionDisassemblerImport(output, default);
+        var disassembler = new ReflectionDisassembler(output, default);
 
         if (context.GetNormalizeIl())
         {

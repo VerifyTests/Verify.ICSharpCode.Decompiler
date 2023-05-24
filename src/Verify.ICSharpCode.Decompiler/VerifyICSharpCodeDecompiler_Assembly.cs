@@ -2,7 +2,7 @@ namespace VerifyTests;
 
 public static partial class VerifyICSharpCodeDecompiler
 {
-    static void ConvertAssembly(PEFile module, AssemblyOptions options, ReflectionDisassemblerImport disassembler, ITextOutput output)
+    static void ConvertAssembly(PEFile module, AssemblyOptions options, ReflectionDisassembler disassembler, ITextOutput output)
     {
         if ((options & AssemblyOptions.IncludeAssemblyReferences) != 0)
         {

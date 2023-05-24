@@ -1,1 +1,0 @@
-﻿TODO: remove the imported source in this folder as soon as this filtering feature is released in the ICSharpCode.Decompiler
