@@ -3,7 +3,7 @@
     <TargetFrameworks>net48;net6.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Argon" Version="0.7.2" />
+    <PackageReference Include="Argon" Version="0.9.0" />
     <PackageReference Include="ICSharpCode.Decompiler" Version="8.1.0.7455" />
     <PackageReference Include="System.Reflection.Metadata" Version="7.0.2" />
     <PackageReference Include="Verify" Version="21.0.0" />
