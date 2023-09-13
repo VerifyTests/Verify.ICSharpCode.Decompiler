@@ -9,7 +9,7 @@ public static class Extensions
         var typeSystem = new DecompilerTypeSystem(file, new UniversalAssemblyResolver(null, false, null));
 
         return typeSystem.Modules
-            .SelectMany(m => m.TypeDefinitions)
+            .SelectMany(_ => _.TypeDefinitions)
             .SingleOrDefault(t => t.ReflectionName == typeName || t.FullName == typeName)
                ?? throw new($"Could not find `{typeName}` in `{file.FileName}`");
     }
@@ -23,7 +23,7 @@ public static class Extensions
     public static IProperty FindPropertyInfo(this PEFile file, string typeName, string propertyName)
     {
         var typeDefinition = file.FindTypeDefinition(typeName);
-        return typeDefinition.Properties.SingleOrDefault(p => p.Name == propertyName)
+        return typeDefinition.Properties.SingleOrDefault(_ => _.Name == propertyName)
                        ?? throw new($"Could not find `{typeName}.{propertyName}` in `{file.FileName}`");
     }
 
@@ -32,7 +32,7 @@ public static class Extensions
         var type = file.FindTypeDefinition(typeName);
 
         var method = type.Methods
-            .SingleOrDefault(m => m.GetName() == methodName && predicate?.Invoke(m) != false)
+            .SingleOrDefault(_ => _.GetName() == methodName && predicate?.Invoke(m) != false)
                      ?? throw new($"Could not find `{typeName}.{methodName}` in `{file.FileName}`");
 
         return (MethodDefinitionHandle)method.MetadataToken;

@@ -172,12 +172,12 @@ public class Tests
 
         Assert.Throws<InvalidOperationException>(() => file.FindMethod("GenericTarget`1", "Overload"));
 
-        var method = file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters.Count == 0);
+        var method = file.FindMethod("GenericTarget`1", "Overload", _ => _.Parameters.Count == 0);
         Assert.True(method != default);
 
-        Assert.Throws<InvalidOperationException>(() => file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters.Count == 2));
+        Assert.Throws<InvalidOperationException>(() => file.FindMethod("GenericTarget`1", "Overload", _ => _.Parameters.Count == 2));
 
-        method = file.FindMethod("GenericTarget`1", "Overload", m => m.Parameters is [_, { Type.ReflectionName: "System.Double" }]);
+        method = file.FindMethod("GenericTarget`1", "Overload", _ => _.Parameters is [_, { Type.ReflectionName: "System.Double" }]);
         Assert.True(method != default);
     }
 
