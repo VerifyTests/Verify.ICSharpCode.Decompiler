@@ -1,11 +1,9 @@
+// ReSharper disable UnusedTypeParameter
 namespace MyNamespace
 {
     class TypeInNamespace
     {
-        class NestedType
-        {
-
-        }
+        class NestedType;
     }
 }
 
@@ -43,8 +41,6 @@ public class OuterType
 {
     private class NestedType
     {
-        private class NestedNestedType
-        {
-        }
+        private class NestedNestedType;
     }
 }

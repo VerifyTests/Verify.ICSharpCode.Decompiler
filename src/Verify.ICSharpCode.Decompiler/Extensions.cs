@@ -32,7 +32,8 @@ public static class Extensions
         var type = file.FindTypeDefinition(typeName);
 
         var method = type.Methods
-            .SingleOrDefault(_ => _.GetName() == methodName && predicate?.Invoke(m) != false)
+            .SingleOrDefault(_ => _.GetName() == methodName &&
+                                  predicate?.Invoke(_) != false)
                      ?? throw new($"Could not find `{typeName}.{methodName}` in `{file.FileName}`");
 
         return (MethodDefinitionHandle)method.MetadataToken;
