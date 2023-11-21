@@ -69,9 +69,9 @@ public async Task TypeDefinitionUsage()
     using var file = new PEFile(assemblyPath);
     var type = file.Metadata.TypeDefinitions
         .Single(
-            x =>
+            _ =>
             {
-                var fullName = x.GetFullTypeName(file.Metadata);
+                var fullName = _.GetFullTypeName(file.Metadata);
                 return fullName.Name == "Target";
             });
     await Verify(new TypeToDisassemble(file, type));
