@@ -131,13 +131,13 @@ public class Tests
     {
         using var file = new PEFile(assemblyPath);
         var type1 = file.FindType("GenericTarget`1");
-        Assert.True(type1 != default);
+        True(type1 != default);
         var type2 = file.FindType("GenericTarget`2");
-        Assert.True(type2 != default);
+        True(type2 != default);
         var method1 = file.FindMethod("GenericTarget`1", "GenericMethod1`1");
-        Assert.True(method1 != default);
+        True(method1 != default);
         var method2 = file.FindMethod("GenericTarget`2", "GenericMethod2`1");
-        Assert.True(method2 != default);
+        True(method2 != default);
     }
 
     [Test]
@@ -145,13 +145,13 @@ public class Tests
     {
         using var file = new PEFile(assemblyPath);
         var type1 = file.FindType("OuterType");
-        Assert.True(type1 != default);
+        True(type1 != default);
         var type2 = file.FindType("OuterType.NestedType");
-        Assert.True(type2 != default);
+        True(type2 != default);
         var type3 = file.FindType("OuterType.NestedType.NestedNestedType");
-        Assert.True(type3 != default);
+        True(type3 != default);
         var type4 = file.FindType("OuterType+NestedType+NestedNestedType");
-        Assert.True(type4 != default);
+        True(type4 != default);
     }
 
     [Test]
@@ -160,7 +160,7 @@ public class Tests
         using var file = new PEFile(assemblyPath);
         var type1 = file.FindType("MyNamespace.TypeInNamespace.NestedType");
 
-        Assert.True(type1 != default);
+        True(type1 != default);
     }
 
     [Test]
@@ -168,17 +168,17 @@ public class Tests
     {
         using var file = new PEFile(assemblyPath);
         var type = file.FindType("GenericTarget`1");
-        Assert.True(type != default);
+        True(type != default);
 
         Assert.Throws<InvalidOperationException>(() => file.FindMethod("GenericTarget`1", "Overload"));
 
         var method = file.FindMethod("GenericTarget`1", "Overload", _ => _.Parameters.Count == 0);
-        Assert.True(method != default);
+        True(method != default);
 
         Assert.Throws<InvalidOperationException>(() => file.FindMethod("GenericTarget`1", "Overload", _ => _.Parameters.Count == 2));
 
         method = file.FindMethod("GenericTarget`1", "Overload", _ => _.Parameters is [_, { Type.ReflectionName: "System.Double" }]);
-        Assert.True(method != default);
+        True(method != default);
     }
 
     #region BackwardCompatibility
