@@ -14,6 +14,8 @@
     <PackageReference Include="Verify.DiffPlex" Version="2.3.0" />
     <PackageReference Include="ProjectDefaults" Version="1.0.102" PrivateAssets="all" />
     <ProjectReference Include="..\AssemblyToProcess\AssemblyToProcess.csproj" />
-    <ProjectReference Include="..\Verify.ICSharpCode.Decompiler\Verify.ICSharpCode.Decompiler.csproj" />NUnit
+    <ProjectReference Include="..\Verify.ICSharpCode.Decompiler\Verify.ICSharpCode.Decompiler.csproj" />
+    <Using Include="NUnit.Framework.Legacy.ClassicAssert" Static="True" />
+    <Using Include="NUnit.Framework.Assert" Static="True" />
   </ItemGroup>
 </Project>
