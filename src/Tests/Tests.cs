@@ -175,7 +175,8 @@ public class Tests
         var method = file.FindMethod("GenericTarget`1", "Overload", _ => _.Parameters.Count == 0);
         True(method != default);
 
-        Throws<InvalidOperationException>(() => file.FindMethod("GenericTarget`1", "Overload", _ => _.Parameters.Count == 2));
+        Throws<InvalidOperationException>(
+            () => file.FindMethod("GenericTarget`1", "Overload", _ => _.Parameters.Count == 2));
 
         method = file.FindMethod("GenericTarget`1", "Overload", _ => _.Parameters is [_, { Type.ReflectionName: "System.Double" }]);
         True(method != default);
