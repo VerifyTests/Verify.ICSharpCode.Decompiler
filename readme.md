@@ -61,7 +61,7 @@ public class Target :
 ### Verify Type
 
 <!-- snippet: TypeDefinitionUsage -->
-<a id='snippet-typedefinitionusage'></a>
+<a id='snippet-TypeDefinitionUsage'></a>
 ```cs
 [Test]
 public async Task TypeDefinitionUsage()
@@ -77,7 +77,7 @@ public async Task TypeDefinitionUsage()
     await Verify(new TypeToDisassemble(file, type));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L7-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-typedefinitionusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L7-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-TypeDefinitionUsage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Result:
@@ -291,7 +291,7 @@ Result:
 A string for the type name can also be used:
 
 <!-- snippet: TypeNameUsage -->
-<a id='snippet-typenameusage'></a>
+<a id='snippet-TypeNameUsage'></a>
 ```cs
 [Test]
 public async Task TypeNameUsage()
@@ -300,13 +300,13 @@ public async Task TypeNameUsage()
     await Verify(new TypeToDisassemble(file, "Target"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L25-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-typenameusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L25-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-TypeNameUsage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Verify Method
 
 <!-- snippet: MethodNameUsage -->
-<a id='snippet-methodnameusage'></a>
+<a id='snippet-MethodNameUsage'></a>
 ```cs
 [Test]
 public async Task MethodNameUsage()
@@ -319,7 +319,7 @@ public async Task MethodNameUsage()
             "OnPropertyChanged"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L36-L49' title='Snippet source file'>snippet source</a> | <a href='#snippet-methodnameusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L36-L49' title='Snippet source file'>snippet source</a> | <a href='#snippet-MethodNameUsage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Result:
@@ -362,7 +362,7 @@ Result:
 
 ### Verify Property
 <!-- snippet: PropertyPartsUsage -->
-<a id='snippet-propertypartsusage'></a>
+<a id='snippet-PropertyPartsUsage'></a>
 ```cs
 [Test]
 public async Task PropertyPartsUsage()
@@ -376,7 +376,7 @@ public async Task PropertyPartsUsage()
             PropertyParts.GetterAndSetter));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L66-L80' title='Snippet source file'>snippet source</a> | <a href='#snippet-propertypartsusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L66-L80' title='Snippet source file'>snippet source</a> | <a href='#snippet-PropertyPartsUsage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Result:
@@ -429,7 +429,7 @@ Starting with version 3.2 the generated IL is normalized by default, to avoid fa
 To turn of the sorting, use the `DontNormalizeIL` setting. It will then decompile IL reflecting the original layout:
 
 <!-- snippet: BackwardCompatibility -->
-<a id='snippet-backwardcompatibility'></a>
+<a id='snippet-BackwardCompatibility'></a>
 ```cs
 [Test]
 public async Task BackwardCompatibility()
@@ -439,7 +439,7 @@ public async Task BackwardCompatibility()
         .DontNormalizeIl();
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L185-L195' title='Snippet source file'>snippet source</a> | <a href='#snippet-backwardcompatibility' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L185-L195' title='Snippet source file'>snippet source</a> | <a href='#snippet-BackwardCompatibility' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Icon
