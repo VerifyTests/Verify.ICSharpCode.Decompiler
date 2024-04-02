@@ -1,6 +1,4 @@
-﻿// Global using directives
-
-global using System.Reflection.Metadata;
+﻿global using System.Reflection.Metadata;
 global using System.Text.RegularExpressions;
 global using ICSharpCode.Decompiler;
 global using ICSharpCode.Decompiler.Disassembler;
