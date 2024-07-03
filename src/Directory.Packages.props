@@ -12,8 +12,8 @@
     <PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
     <PackageVersion Include="ProjectDefaults" Version="1.0.128" />
     <PackageVersion Include="System.Reflection.Metadata" Version="8.0.0" />
-    <PackageVersion Include="Verify" Version="25.2.0" />
+    <PackageVersion Include="Verify" Version="25.3.0" />
     <PackageVersion Include="Verify.DiffPlex" Version="3.0.0" />
-    <PackageVersion Include="Verify.NUnit" Version="25.2.0" />
+    <PackageVersion Include="Verify.NUnit" Version="25.3.0" />
   </ItemGroup>
 </Project>
