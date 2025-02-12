@@ -96,9 +96,9 @@ Result:
 		01 00 02 00 00
 	)
 	.interfaceimpl type [System.ObjectModel]System.ComponentModel.INotifyPropertyChanged
-	.custom instance void [System.Runtime]System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
-		01 00 00 00 00
-	)
+		.custom instance void [System.Runtime]System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+			01 00 00 00 00
+		)
 
 	// Fields
 	.field private string 'property'
