@@ -1,3 +1,4 @@
-﻿global using ICSharpCode.Decompiler;
+﻿global using System.ComponentModel;
+global using ICSharpCode.Decompiler;
 global using ICSharpCode.Decompiler.Metadata;
 global using VerifyTests.ICSharpCode.Decompiler;

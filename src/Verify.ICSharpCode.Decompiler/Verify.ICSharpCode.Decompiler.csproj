@@ -6,7 +6,6 @@
     <PackageReference Include="ICSharpCode.Decompiler" />
     <PackageReference Include="System.Reflection.Metadata" />
     <PackageReference Include="Verify" />
-    <PackageReference Include="Microsoft.CSharp" />
     <PackageReference Include="ProjectDefaults" PrivateAssets="all" />
   </ItemGroup>
 </Project>

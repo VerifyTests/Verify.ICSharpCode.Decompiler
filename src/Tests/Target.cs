@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-public class Target :
+﻿public class Target :
     INotifyPropertyChanged
 {
     void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>

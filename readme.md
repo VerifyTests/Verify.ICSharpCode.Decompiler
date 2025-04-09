@@ -32,8 +32,6 @@ Then given the following type:
 <!-- snippet: Target.cs -->
 <a id='snippet-Target.cs'></a>
 ```cs
-using System.ComponentModel;
-
 public class Target :
     INotifyPropertyChanged
 {
@@ -55,7 +53,7 @@ public class Target :
     }
 }
 ```
-<sup><a href='/src/Tests/Target.cs#L1-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-Target.cs' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Target.cs#L1-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-Target.cs' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Verify Type
