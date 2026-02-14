@@ -9,6 +9,11 @@
     <PackageReference Include="NUnit3TestAdapter" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="Verify.Nunit" />
+    <PackageReference Include="Argon" />
+    <PackageReference Include="DiffEngine" />
+    <PackageReference Include="EmptyFiles" />
+    <PackageReference Include="SimpleInfoName" />
+    <PackageReference Include="Verify" />
     <PackageReference Include="Verify.DiffPlex" />
     <PackageReference Include="ProjectDefaults" PrivateAssets="all" />
     <ProjectReference Include="..\AssemblyToProcess\AssemblyToProcess.csproj" />
