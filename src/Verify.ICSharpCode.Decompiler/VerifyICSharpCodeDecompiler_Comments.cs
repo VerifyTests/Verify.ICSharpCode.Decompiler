@@ -11,8 +11,7 @@ public static partial class VerifyICSharpCodeDecompiler
 
                 return commentStart == 0 ||
                        (commentStart > 0 && line.Take(commentStart).All(char.IsWhiteSpace));
-            },
-            ScrubberLocation.Last);
+            });
 
         settings.ScrubLinesWithReplace(
             line =>
@@ -24,8 +23,7 @@ public static partial class VerifyICSharpCodeDecompiler
                 }
 
                 return line.Substring(0, commentStart).TrimEnd();
-            },
-            ScrubberLocation.Last);
+            });
     }
 
     public static SettingsTask ScrubComments(this SettingsTask settings)
