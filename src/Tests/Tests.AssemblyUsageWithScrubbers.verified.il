@@ -5,7 +5,6 @@
 .class public auto ansi beforefieldinit AssemblyToProcess.Class
 	extends [System.Runtime]System.Object
 {
-
 	.field private int32 '<Property>k__BackingField'
 	.custom instance void [System.Runtime]System.Diagnostics.DebuggerBrowsableAttribute::.ctor(valuetype [System.Runtime]System.Diagnostics.DebuggerBrowsableState) = (
 	)
@@ -13,12 +12,9 @@
 	)
 	.field private float64 'field'
 
-
 	.method public hidebysig specialname rtspecialname 
 		instance void .ctor () cil managed 
 	{
-
-
 		.maxstack 8
 
 		IL_0000: ldarg.0
@@ -32,8 +28,6 @@
 	{
 		.custom instance void [System.Runtime]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = (
 		)
-
-
 		.maxstack 8
 
 		IL_0000: ldarg.0
@@ -44,8 +38,6 @@
 	.method public hidebysig 
 		instance void Method () cil managed 
 	{
-
-
 		.maxstack 3
 		.locals init (
 			[0] string
@@ -72,8 +64,6 @@
 	{
 		.custom instance void [System.Runtime]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = (
 		)
-
-
 		.maxstack 8
 
 		IL_0000: ldarg.0
@@ -81,7 +71,6 @@
 		IL_0002: stfld int32 AssemblyToProcess.Class::'<Property>k__BackingField'
 		IL_0007: ret
 	}
-
 
 	.property instance int32 Property()
 	{
