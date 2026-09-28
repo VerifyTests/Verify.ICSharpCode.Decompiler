@@ -1,7 +1,8 @@
-[TestFixture]
+namespace Tests;
+
 public class Tests
 {
-    static readonly string assemblyPath = Assembly.GetExecutingAssembly().Location;
+    static readonly string assemblyPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
     static readonly string assembly2Path = typeof(AssemblyToProcess.Class).Assembly.Location;
 
     #region TypeDefinitionUsage
@@ -127,59 +128,58 @@ public class Tests
         });
 
     [Test]
-    public void GenericLookup()
+    public async Task GenericLookup()
     {
         using var file = new PEFile(assemblyPath);
         var type1 = file.FindType("GenericTarget`1");
-        True(type1 != default);
+        await Assert.That(type1 != default).IsTrue();
         var type2 = file.FindType("GenericTarget`2");
-        True(type2 != default);
+        await Assert.That(type2 != default).IsTrue();
         var method1 = file.FindMethod("GenericTarget`1", "GenericMethod1`1");
-        True(method1 != default);
+        await Assert.That(method1 != default).IsTrue();
         var method2 = file.FindMethod("GenericTarget`2", "GenericMethod2`1");
-        True(method2 != default);
+        await Assert.That(method2 != default).IsTrue();
     }
 
     [Test]
-    public void NestedTypeLookup()
+    public async Task NestedTypeLookup()
     {
         using var file = new PEFile(assemblyPath);
         var type1 = file.FindType("OuterType");
-        True(type1 != default);
+        await Assert.That(type1 != default).IsTrue();
         var type2 = file.FindType("OuterType.NestedType");
-        True(type2 != default);
+        await Assert.That(type2 != default).IsTrue();
         var type3 = file.FindType("OuterType.NestedType.NestedNestedType");
-        True(type3 != default);
+        await Assert.That(type3 != default).IsTrue();
         var type4 = file.FindType("OuterType+NestedType+NestedNestedType");
-        True(type4 != default);
+        await Assert.That(type4 != default).IsTrue();
     }
 
     [Test]
-    public void NamespaceLookup()
+    public async Task NamespaceLookup()
     {
         using var file = new PEFile(assemblyPath);
         var type1 = file.FindType("MyNamespace.TypeInNamespace.NestedType");
 
-        True(type1 != default);
+        await Assert.That(type1 != default).IsTrue();
     }
 
     [Test]
-    public void MethodOverloadLookup()
+    public async Task MethodOverloadLookup()
     {
         using var file = new PEFile(assemblyPath);
         var type = file.FindType("GenericTarget`1");
-        True(type != default);
+        await Assert.That(type != default).IsTrue();
 
-        Throws<InvalidOperationException>(() => file.FindMethod("GenericTarget`1", "Overload"));
+        await Assert.That(() => file.FindMethod("GenericTarget`1", "Overload")).ThrowsExactly<InvalidOperationException>();
 
         var method = file.FindMethod("GenericTarget`1", "Overload", _ => _.Parameters.Count == 0);
-        True(method != default);
+        await Assert.That(method != default).IsTrue();
 
-        Throws<InvalidOperationException>(
-            () => file.FindMethod("GenericTarget`1", "Overload", _ => _.Parameters.Count == 2));
+        await Assert.That(() => file.FindMethod("GenericTarget`1", "Overload", _ => _.Parameters.Count == 2)).ThrowsExactly<InvalidOperationException>();
 
         method = file.FindMethod("GenericTarget`1", "Overload", _ => _.Parameters is [_, { Type.ReflectionName: "System.Double" }]);
-        True(method != default);
+        await Assert.That(method != default).IsTrue();
     }
 
     #region BackwardCompatibility

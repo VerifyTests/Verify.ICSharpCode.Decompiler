@@ -89,7 +89,7 @@ public async Task TypeDefinitionUsage()
     await Verify(new TypeToDisassemble(file, type));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L7-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-TypeDefinitionUsage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L8-L24' title='Snippet source file'>snippet source</a> | <a href='#snippet-TypeDefinitionUsage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Result:
@@ -312,7 +312,7 @@ public async Task TypeNameUsage()
     await Verify(new TypeToDisassemble(file, "Target"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L25-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-TypeNameUsage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L26-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-TypeNameUsage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Verify Method
@@ -331,7 +331,7 @@ public async Task MethodNameUsage()
             "OnPropertyChanged"));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L36-L49' title='Snippet source file'>snippet source</a> | <a href='#snippet-MethodNameUsage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L37-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-MethodNameUsage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Result:
@@ -388,7 +388,7 @@ public async Task PropertyPartsUsage()
             PropertyParts.GetterAndSetter));
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L66-L80' title='Snippet source file'>snippet source</a> | <a href='#snippet-PropertyPartsUsage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L67-L81' title='Snippet source file'>snippet source</a> | <a href='#snippet-PropertyPartsUsage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Result:

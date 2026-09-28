@@ -2,13 +2,12 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Optimize>false</Optimize>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MarkdownSnippets.MsBuild" PrivateAssets="all" />
-    <PackageReference Include="NUnit" />
-    <PackageReference Include="NUnit3TestAdapter" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="Verify.Nunit" />
+    <PackageReference Include="TUnit" />
+    <PackageReference Include="Verify.TUnit" />
     <PackageReference Include="Argon" />
     <PackageReference Include="DiffEngine" />
     <PackageReference Include="EmptyFiles" />
@@ -18,7 +17,5 @@
     <PackageReference Include="ProjectDefaults" PrivateAssets="all" />
     <ProjectReference Include="..\AssemblyToProcess\AssemblyToProcess.csproj" />
     <ProjectReference Include="..\Verify.ICSharpCode.Decompiler\Verify.ICSharpCode.Decompiler.csproj" />
-    <Using Include="NUnit.Framework.Legacy.ClassicAssert" Static="True" />
-    <Using Include="NUnit.Framework.Assert" Static="True" />
   </ItemGroup>
 </Project>
